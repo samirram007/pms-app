@@ -1,0 +1,201 @@
+.tbl {
+    background-color: red;
+}
+page[size="A4"] {
+    background: white;
+    width: 21cm;
+    height: 29.7cm;
+    display: block;
+    /* margin: 0 auto; */
+    margin: 5%;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgb(42 73 110 / 50%);
+    border: 0.1cm solid #f1f2f9;
+    position: relative;
+}
+footer {
+    page-break-after: always;
+}
+[contenteditable="true"] {
+    caret-color: red;
+
+    border: 1px dotted #ccc !important;
+    content: "_name_";
+}
+@page {
+    header: page-header;
+    footer: page-footer;
+    margin: 5%;
+    margin-top: 90mm;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.8rem;
+    /* this affects the margin in the printer settings */
+}
+/* .content-container{
+    margin-top: 75mm;
+} */
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.d-flex {
+    display: flex;
+}
+.h4 {
+    font-size: 1.4rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50mm;
+    color: rgb(14, 13, 13);
+}
+.content-footer-table {
+    width: 90%;
+    margin: 0 5%;
+    margin-top: 10mm;
+    font-size: 1rem;
+}
+.u-line {
+    text-decoration: underline;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.report-body-header {
+    margin: 2.5rem auto 2rem;
+}
+.pdf-table,
+.pdf-table-header {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9rem;
+}
+.pdf-table {
+    width: 80%;
+}
+.pdf-table-header tr td:nth-child(3) {
+    width: 300px;
+}
+
+.pdf-table td,
+#pdf-table th {
+    border: none;
+    padding: 0.5rem;
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+
+/* .pdf-table tr:nth-child(even){background-color: #f2f2f2;} */
+.container {
+    /* margin-top: 75mm; */
+}
+.pdf-table tr th {
+    border-bottom: 1px solid #222;
+    padding: 2px;
+}
+
+.pdf-table tr th:nth-child(n + 3) {
+    text-align: center;
+}
+
+.pdf-table tr th:nth-child(n + 5) {
+    text-align: right;
+}
+
+.pdf-table tr th:nth-child(2) {
+    width: 250px;
+}
+
+.pdf-table tr td:nth-child(n + 3) {
+    text-align: center;
+}
+
+.pdf-table tr td:nth-child(n + 5) {
+    text-align: right;
+}
+
+.pdf-table tr td:nth-child(n + 7) {
+    width: 150px;
+}
+
+.pdf-table tr td:nth-child(2) {
+    width: 250px;
+}
+
+.pdf-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #ffffff;
+    color: rgb(34, 31, 31);
+}
+
+.pdf-table .border-none {
+    border: none;
+}
+
+.pdf-table .border-left {
+    border-left: 1px solid #222;
+}
+
+.pdf-table .border-top {
+    border-top: 1px solid #222 !important;
+}
+
+.pdf-table .border-top-dark {
+    border-top: 2px solid #222;
+}
+
+.cancel {
+    text-decoration: line-through;
+}
+.sample{
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding-bottom: 30mm;
+}
+@media print {
+    htmlpagefooter {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 30mm;
+        color: rgb(14, 13, 13);
+    }
+    #scrollingContainer {
+        overflow-y: hidden;
+        height: calc(100% - 120mm);
+        vertical-align: middle;
+    }
+    #content-table,
+    .pdf-table {
+        width: 80%;
+        margin: 0 10%;
+        font-size: 1.4rem;
+    }
+    .content-footer-table {
+        width: 100%;
+        margin: 0;
+        margin-top: 10mm;
+        margin-bottom: 2rem;
+        font-size: 1rem;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .sample{
+        font-size: 0.8rem;
+        font-weight: bold;
+        padding-bottom: 30mm;
+    }
+
+}

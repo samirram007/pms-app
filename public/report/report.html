@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <style>
+        page[size="A4"] {
+            background: white;
+            width: 21cm;
+            height: 29.7cm;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 0.5cm;
+            box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+        }
+    </style>
+  </head>
+  <body>
+    <page size="A4">
+
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6"></div>
+
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <!--  <li class="breadcrumb-item"><a href="#"></a></li>
+              <li class="breadcrumb-item active"></li> -->
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-lg-3 col-sm-3">
+          <!-- column name -->
+          <div class="form-group">
+            <label for="booking_id" class="fw-bold">Booking Id : </label>
+            <span class="box"></span>
+          </div>
+          <div class="form-group">
+            <label for="patient" class="fw-bold">Patient : </label>
+          </div>
+          <div class="form-group">
+            <label for="address" class="fw-bold">Address</label>
+          </div>
+          <div class="form-group">
+            <label for="ref" class="fw-bold">Ref. Doctor</label>
+          </div>
+        </div>
+        <!--  -->
+        <div class="col-md-3 col-lg-3 col-sm-3">
+          <!-- column information -->
+          <div class="booking_id">
+            <span>12345</span>
+          </div>
+          <div class="patient">
+            <span>KAJAL DAS</span>
+          </div>
+          <div class="address">
+            <span>SAHAPUR</span>
+          </div>
+          <div class="ref">
+            <span>DR RANABEER BOSE</span>
+          </div>
+        </div>
+        <!-- Column name -->
+        <div class="col-md-3 col-lg-3 col-sm-3">
+          <div class="form-group">
+            <label for="booking_date" class="fw-bold">Booking Date</label>
+          </div>
+          <div class="form-group">
+            <label for="age" class="fw-bold">Age</label>
+          </div>
+          <div class="form-group">
+            <label for="sex" class="fw-bold">Sex</label>
+          </div>
+          <div class="form-group">
+            <label for="reporting_time" class="fw-bold">Reporting time</label>
+          </div>
+        </div>
+        <!-- column information -->
+        <div class="col-md-3 col-lg-3 col-sm-3">
+          <div>
+            <span>26-12-2020</span>
+          </div>
+          <div>
+            <span>23</span>
+          </div>
+          <div>
+            <span>Male</span>
+          </div>
+          <div>
+            <span>10:01</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End -->
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center">
+        <a href="#" class="h4 text-black">Test Report Status/Results</a>
+      </div>
+
+      <div class="table mt-5">
+        <table id="example1" class="table">
+          <thead>
+            <tr>
+              <th class="text-center">Test</th>
+              <th class="text-center">Result</th>
+              <th class="text-center">Biological Reference Interval</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- @foreach ($collections as $k => $item) -->
+            <tr>
+              <td class="text-center">HB</td>
+              <td class="text-center">15.6 gm/dl</td>
+              <td class="text-center">11 - 14 gm/dl</td>
+            </tr>
+            <tr>
+              <td class="text-center">Total Leucocyte Count</td>
+              <td class="text-center">5,000/cumm</td>
+              <td class="text-center">4000- 11000/cumm</td>
+            </tr>
+            <tr>
+              <td class="text-center">Neutrophils</td>
+              <td class="text-center">64%</td>
+              <td class="text-center">40 - 70%</td>
+            </tr>
+            <tr>
+              <td class="text-center">Lymphocytes</td>
+              <td class="text-center">29%</td>
+              <td class="text-center">22 - 44%</td>
+            </tr>
+            <tr>
+              <td class="text-center">Monocytes</td>
+              <td class="text-center">02%</td>
+              <td class="text-center">4 - 11%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container mt-5">
+        <div>
+          <p>Sample : <span>Blood, Cell Counter</span></p>
+        </div>
+
+        <p class="fw-bold d-flex justify-content-start">Checked By</p>
+
+        <span class="h5 fw-bold d-flex justify-content-end"
+          >Dr kisnendu das</span
+        >
+
+        <span class="fw-bold d-flex justify-content-end">MD Pathology</span>
+      </div>
+    </footer>
+</page>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+      integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+      crossorigin="anonymous"
+    ></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

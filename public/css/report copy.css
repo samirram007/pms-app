@@ -1,0 +1,221 @@
+.tbl{
+    background-color:red;
+}
+page[size="A4"] {
+    background: white;
+    width: 21cm;
+    height: 29.7cm;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgb(42 73 110 / 50%);
+    border: 0.1cm solid #f1f2f9;
+    position: relative;
+}
+footer {page-break-after: always;}
+[contenteditable='true'] {
+    caret-color: red;
+
+    border: 1px dotted #ccc !important;
+    content: "_name_";
+
+}
+#pdf_view [contenteditable='true'] {
+    caret-color: rgb(30, 78, 235);
+
+    border: 1px dotted rgba(204, 204, 204, 0) !important;
+    content: "_name_";
+
+}
+
+page header {
+
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+page footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+page .page-container {
+    padding: 2cm 0;
+}
+
+page div {
+    width: 100%;
+
+}
+
+@media print {
+
+    body,
+    page[size="A4"] {
+        margin: 0;
+        box-shadow: 0;
+    }
+    footer {page-break-after: always;}
+    .container {
+        max-width: 1280px;
+    }
+
+    #invoice_header {
+      margin-top: 100px;
+  }
+}
+
+.page-container {
+    margin: 5cm 0 20px 0;
+  }
+
+  .content-table {
+    border-collapse: collapse;
+    margin: 25px 25px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .content-table thead tr {
+    color: black;
+    text-align: left;
+    font-weight: bold;
+    font-size: 19px;
+  }
+  .content-table td {
+    text-align: left;
+  }
+  .content-table th, .content-table td {
+    padding: 0.2cm 15px;
+  }
+  header .content-table th,  header .content-table td {
+    padding: 0.02cm 15px;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  header #invoice_header{
+    /* margin-top: 4cm; */
+
+  }
+  header #invoice_header td:nth-child(1){
+    width: 3.5cm;
+  }
+  header #invoice_header td:nth-child(2), header #invoice_header td:nth-child(5){
+    width: 0.06cm;
+  }
+  header #invoice_header td:nth-child(4){
+    width: 3.7cm;
+  }
+  .content-table tbody tr {
+    border-bottom: 0px;
+  }
+  .content-table tr td {
+    font-size: 14px;
+  }
+  .content-table tr th {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  div p {
+    font-weight: 800;
+    font-size: 14px;
+  }
+  div span {
+    font-size: 14px;
+  }
+  footer {
+    /* margin-bottom: 80px; */
+  }
+  @page {
+    header: page-header;
+    footer: page-footer;
+    margin: 5%;
+    margin-top: 55mm;
+    /* this affects the margin in the printer settings */
+}
+
+  .pdf-table,
+  .pdf-table-header {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 14px;
+  }
+
+  .pdf-table-header tr td:nth-child(3) {
+      width: 300px;
+  }
+
+  .pdf-table td,
+  #pdf-table th {
+      border: none;
+      padding: 8px;
+      font-weight: normal;
+  }
+
+  /* .pdf-table tr:nth-child(even){background-color: #f2f2f2;} */
+
+  .pdf-table tr th,
+  .pdf-table tr td {
+      border-bottom: 1px solid #222;
+      padding: 2px;
+  }
+
+  .pdf-table tr th:nth-child(n+3) {
+      text-align: center;
+  }
+
+  .pdf-table tr th:nth-child(n+5) {
+      text-align: right;
+  }
+
+  .pdf-table tr th:nth-child(2) {
+      width: 250px;
+  }
+
+  .pdf-table tr td:nth-child(n+3) {
+      text-align: center;
+  }
+
+  .pdf-table tr td:nth-child(n+5) {
+      text-align: right;
+  }
+
+  .pdf-table tr td:nth-child(n+7) {
+      width: 150px;
+  }
+
+  .pdf-table tr td:nth-child(2) {
+      width: 250px;
+  }
+
+  .pdf-table th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #ffffff;
+      color: rgb(34, 31, 31);
+  }
+
+  .pdf-table .border-none {
+      border: none;
+  }
+
+  .pdf-table .border-left {
+      border-left: 1px solid #222;
+  }
+
+  .pdf-table .border-top {
+      border-top: 1px solid #222 !important;
+  }
+
+  .pdf-table .border-top-dark {
+      border-top: 2px solid #222;
+
+  }
+
+  .cancel {
+      text-decoration: line-through;
+  }
