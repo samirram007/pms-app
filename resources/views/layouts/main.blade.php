@@ -38,8 +38,8 @@
     <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/ekko-lightbox/ekko-lightbox.css')}}">
-    <link rel="stylesheet" href="{{asset('css/skydash.css')}}">
-    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/skydash.css')}}">
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}"> --}}
 
       <!-- jQuery -->
       <script src="{{asset('plugins/jquery/jquery.min.js')}}" ></script>
@@ -47,7 +47,10 @@
       <!-- jQuery UI 1.11.4 -->
       <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}" defer></script>
       <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
+      <script src="{{asset('plugins/bootstrap/js/bootstrap.js')}}"></script>
+      <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.js')}}"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         // $.widget.bridge('uibutton', $.ui.button)
@@ -98,10 +101,7 @@
     <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
     {{-- <script src="{{asset('plugins/popper/popper.js')}}"></script> --}}
     <!-- Bootstrap 4 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
-    <script src="{{asset('plugins/bootstrap/js/bootstrap.js')}}"></script>
-    <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.js')}}"></script>
     {{-- proper --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
@@ -146,6 +146,7 @@
     {{-- <script src="{{asset('dist/js/demo.js')}}"></script> --}}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     {{-- <script src="{{asset('dist/js/pages/dashboard.js')}}"></script> --}}
+
     <script>
 
          $('#rems-popup').on('shown.bs.modal', function() {
@@ -253,6 +254,9 @@
 
         });
     </script>
+      <script>
+        $('.dropdown-toggle').dropdown();
+    </script>
     <script>
         @if(Session::has('message'))
         toastr.options =
@@ -262,7 +266,7 @@
         }
                 toastr.success("{{ session('message') }}");
         @endif
-      
+
         @if(Session::has('error'))
         toastr.options =
         {
@@ -271,7 +275,7 @@
         }
                 toastr.error("{{ session('error') }}");
         @endif
-      
+
         @if(Session::has('info'))
         toastr.options =
         {
@@ -280,7 +284,7 @@
         }
                 toastr.info("{{ session('info') }}");
         @endif
-      
+
         @if(Session::has('warning'))
         toastr.options =
         {
@@ -290,6 +294,8 @@
                 toastr.warning("{{ session('warning') }}");
         @endif
       </script>
+
+
 </body>
 
 </html>

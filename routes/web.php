@@ -34,6 +34,7 @@ require __DIR__.'/auth.php';
 Route::group(['middleware' => 'prevent-back-history'],function(){
     require __DIR__.'/adminauth.php';
     require __DIR__.'/employeeauth.php';
+    require __DIR__.'/patientauth.php';
 
 });
 

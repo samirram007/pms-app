@@ -76,14 +76,27 @@
                                             <td>{{ $data->amount }}</td>
                                             <td>{!! $tests !!}</td>
                                             <td class="text-wrap text-truncate">{{ $data->description }}</td>
-                                            <td class="text-right">
-                                                <a href="{{ route('admin.package.show', $data->id) }}"
-                                                    class="btn btn-outline-info"> <span class="iconify" data-icon="mdi:view-dashboard" data-width="15" data-height="15" data-rotate="180deg"></span> View</a>
 
-                                                <a href="{{ route('admin.package.edit', $data->id) }}"
-                                                    class="btn btn-outline-info"><span class="iconify" data-icon="mdi:circle-edit-outline" data-width="15" data-height="15"></span> Edit</a>
-                                                <a href="{{ route('admin.package.delete', $data->id) }}"
-                                                    class="btn btn-outline-info delete"><span class="iconify" data-icon="mdi:delete-sweep-outline" data-width="15" data-height="15"></span> Delete</a>
+                                            <td class="text-right">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-outline-link dropdown-toggle" type="button"
+                                                        data-toggle="dropdown">SELECT
+                                                        <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li> <a href="{{ route('admin.package.show', $data->id) }}"
+                                                                class="btn btn-link"> VIEW</a></li>
+                                                        <li><a href="{{ route('admin.package.edit', $data->id) }}"
+                                                                class="btn btn-link"> EDIT</a></li>
+                                                        <li><a href="{{ route('admin.package.delete', $data->id) }}"
+                                                                class="btn btn-link delete"> DELETE</a></li>
+                                                        <li><a href="{{ route('admin.test_report.config', $data->id) }}"
+                                                                class="btn btn-link "> REPORT SETTINGS</a></li>
+                                                    </ul>
+                                                </div>
+
+
+
+
                                             </td>
                                         </tr>
                                     @endforeach

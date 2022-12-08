@@ -16,6 +16,7 @@
                         <li> <a class="dropdown-item" href="{{ route('doctor.login') }}"> Doctor Login </a></li> --}}
                         <li> <a class="dropdown-item" href="{{ route('admin.login') }}"> Admin Login </a></li>
                         <li> <a class="dropdown-item" href="{{ route('employee.login') }}"> Employee Login </a></li>
+                        <li> <a class="dropdown-item" href="{{ route('patient.login') }}"> Patient Login </a></li>
                         {{-- <li> <a class="dropdown-item" href="{{ route('refferer.login') }}"> Refferer Login </a></li>
                         <li> <a class="dropdown-item" href="{{ route('collectioncentre.login') }}"> Collection-Centre Login </a></li>
                         <li> <a class="dropdown-item" href="{{ route('opd.login') }}"> OPD Login </a></li> --}}

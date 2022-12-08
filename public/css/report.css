@@ -13,6 +13,7 @@ page[size="A4"] {
     border: 0.1cm solid #f1f2f9;
     position: relative;
 }
+
 footer {
     page-break-after: always;
 }
@@ -31,7 +32,11 @@ footer {
     border-collapse: collapse;
     width: 100%;
     font-size: 0.8rem;
+    page-break-after: always;
     /* this affects the margin in the printer settings */
+}
+.page-break, pagebreak{
+    page-break-after: always;
 }
 /* .content-container{
     margin-top: 75mm;
@@ -166,6 +171,9 @@ footer {
     padding-bottom: 30mm;
 }
 @media print {
+    .page-break,pagebreak{
+        page-break-after: always;
+    }
     htmlpagefooter {
         position: absolute;
         bottom: 0;

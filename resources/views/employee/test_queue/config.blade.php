@@ -141,6 +141,7 @@
             var h=$('#config_header_load').html();
               //  console.log(h);
                 $("#config_header").html(h);
+                $(".config_header").html(h);
             $('#preview_tab').click();
             $('#home_tab').on('click', function() {
                 //console.log('I am Clicked');

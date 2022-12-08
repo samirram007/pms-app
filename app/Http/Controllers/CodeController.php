@@ -9,9 +9,7 @@ class CodeController extends Controller
 {
     public function savecode(Request $request)
     {
-
-        // $code=$request->code;
-        $test_config=TestReportConfig::where('test_id', $request->test_id)->first();
+         $test_config=TestReportConfig::where('test_id', $request->test_id)->first();
         if($test_config==null){
             $data =new TestReportConfig();
             $data->test_id=$request->test_id;

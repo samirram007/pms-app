@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'employees',
         ],
+        'patient' => [
+            'driver' => 'session',
+            'provider' => 'patients',
+        ],
     ],
 
     /*
@@ -80,6 +84,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Employee::class,
         ],
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Patient::class,
+        ],
 
     ],
 
@@ -108,11 +116,17 @@ return [
         'admins' => [
             'provider' => 'admins',
             'table' => 'password_resets',
-            'expire' => 60,
+            'expire' => 600000,
             'throttle' => 60,
         ],
         'employees' => [
             'provider' => 'employees',
+            'table' => 'password_resets',
+            'expire' => 600000,
+            'throttle' => 60,
+        ],
+        'patients' => [
+            'provider' => 'patients',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
@@ -130,6 +144,6 @@ return [
     |
     */
 
-    'password_timeout' => 108000,
+    'password_timeout' => 10800000,
 
 ];

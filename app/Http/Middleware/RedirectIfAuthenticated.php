@@ -25,6 +25,9 @@ class RedirectIfAuthenticated
             if ($guard=='employee' && Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::EMPLOYEE_HOME);
             }
+            if ($guard=='patient' && Auth::guard($guard)->check()) {
+                return redirect(RouteServiceProvider::PATIENT_HOME);
+            }
 
             if ($guard=='admin' && Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::ADMIN_HOME);

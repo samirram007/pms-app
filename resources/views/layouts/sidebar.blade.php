@@ -36,6 +36,8 @@
         <nav class="mt-2">
             @if ($guard == 'employee')
                 @include('layouts.partials._employee_menu')
+            @elseif($guard == 'patient')
+                @include('layouts.partials._patient_menu')
             @elseif($guard == 'admin')
                 @include('layouts.partials._admin_menu')
             @else

@@ -9,19 +9,10 @@
                     <div class="col-md-12">
                         <div class="card card-primary pb-0">
                             <div class="card-body pb-0">
-                                <div class="row   border-bottom pb-2 mb-2">
-
+                                <div class="row   pb-2 mb-2">
                                     <div class="col-sm-12 text-right">
-                                        <a href="{{ route('employee.sales_order.create') }}"
-                                            class="load-popup float-right btn btn-rounded btn-outline-info ">
-                                            <span class="iconify" data-icon="mdi:thermometer-plus" data-width="15"
-                                                data-height="15">
-                                            </span> Upcoming Test</a>
-                                            <a href="{{ route('employee.test_queue.fetch') }}"
-                                            class="load-popup float-right btn btn-rounded btn-outline-info ">
-                                            <span class="iconify" data-icon="mdi:thermometer-plus" data-width="15"
-                                                data-height="15">
-                                            </span> Fetch Test</a>
+                                        <a href="{{ route('employee.sales_order.create') }}" class="load-popup float-right btn btn-rounded btn-outline-info ">Upcoming Test</a>
+                                        <a href="{{ route('employee.test_queue.fetch') }}" class="load-popup float-right btn btn-rounded btn-outline-info ">Fetch Test</a>
                                     </div>
                                 </div>
                             </div>
@@ -30,11 +21,11 @@
                 </div>
                 <div class="row   ">
                     {{-- show Error message --}}
-                    
+
                     <div class="col-md-12">
                         <div class="card card-primary">
                             <div class="card-body">
-                                <div class="row   border-bottom pb-2 mb-2">
+                                <div class="row    ">
                                     <div class="col-sm-3">
                                         <label for="lab_centre">
                                             Lab Centre :
@@ -51,7 +42,7 @@
                                             From Date :
                                         </label>
                                         <input class="form-control" type="date" id="from_date" name="from_date"
-                                            value="{{ date('Y-m-d') }}">
+                                            value="{{ date('Y-m-d',strtotime('- 7 days')) }}">
                                     </div>
 
                                     <div class="col-sm-3 ">
@@ -61,7 +52,7 @@
                                         <input class="form-control" type="date" id="to_date" name="to_date"
                                             value="{{ date('Y-m-d') }}">
                                     </div>
-                                    <div class="col-sm-3 ">
+                                    <div class="col-sm-2 ">
                                         <label for="test_status">
                                             Status
                                         </label>
@@ -73,12 +64,11 @@
                                        </select>
 
                                     </div>
-                                    <div class="col-sm-3 text-left">
-                                        <a id="search" href="javascript:void(0)"
-                                            class="search btn btn-rounded btn-outline-info my-4 ">
-                                            <span class="iconify" data-icon="et:search" style="color: rgb(9, 62, 122);"
-                                                data-width="20" data-height="20"></span>
-                                            Search</a>
+                                    <div class="col-sm-1 text-left">
+                                    <a id="search" href="javascript:void(0)"
+                                            class="search btn btn-rounded btn-primary my-4 px-4 ">
+                                            <span class="iconify" data-icon="et:search" style="color: rgb(247, 247, 247);"
+                                                data-width="25" data-height="25"></span></a>
 
                                     </div>
                                 </div>

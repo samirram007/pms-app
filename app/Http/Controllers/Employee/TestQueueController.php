@@ -95,22 +95,22 @@ $data['test_status']=$this->test_status;
            // dd($test_items);
             foreach($test_items as $test_item){
 
-                 if($test_item->test->is_package == 1){
-                    $tests=TestPackage::where('package_id', $test_item->test->id)->get();
-                    foreach($tests as $test){
-                        $test_queue = new TestQueue();
-                        $test_queue->sales_invoice_id = $test_item->sales_invoice_id;
-                        $test_queue->patient_id = $test_item->sales_invoice->patient_id;
-                        $test_queue->test_date= $test_item->test_date;
-                        //$test_queue->report_date= $test_item->report_date;
-                        $test_queue->test_id = $test->test_id;
-                        $test_queue->package_id = $test_item->test->id;
-                        $test_queue->lab_centre_id = $test_item->sales_invoice->lab_centre_id;
-                        $test_queue->collection_centre_id = $test_item->sales_invoice->collection_centre_id;
-                        $test_queue->save();
-                    }
-                }
-                else{
+                //  if($test_item->test->is_package == 1){
+                //     $tests=TestPackage::where('package_id', $test_item->test->id)->get();
+                //     foreach($tests as $test){
+                //         $test_queue = new TestQueue();
+                //         $test_queue->sales_invoice_id = $test_item->sales_invoice_id;
+                //         $test_queue->patient_id = $test_item->sales_invoice->patient_id;
+                //         $test_queue->test_date= $test_item->test_date;
+                //         //$test_queue->report_date= $test_item->report_date;
+                //         $test_queue->test_id = $test->test_id;
+                //         $test_queue->package_id = $test_item->test->id;
+                //         $test_queue->lab_centre_id = $test_item->sales_invoice->lab_centre_id;
+                //         $test_queue->collection_centre_id = $test_item->sales_invoice->collection_centre_id;
+                //         $test_queue->save();
+                //     }
+                // }
+                // else{
 
                     $test_queue = new TestQueue();
 
@@ -127,7 +127,7 @@ $data['test_status']=$this->test_status;
                     $test_queue->save();
                   //  DB::commit();
                    // dd($test_queue);
-                }
+                // }
 
 
             }
@@ -140,6 +140,7 @@ $data['test_status']=$this->test_status;
            ->where('lab_centre_id', $request->lab_centre_id)
            ->whereBetween('test_date', [$request->from_date, $request->to_date])
               ->get();
+              $data['test_status']=$this->test_status;
            //dd($data['collections']);
         //    ->get();
 
@@ -155,7 +156,7 @@ $data['test_status']=$this->test_status;
     {
         $user=auth()->user();
         $data['lab_center'] = LabCentre::where('id',$user->lab_centre_id)->first();
-        
+
         // dd($data['test']);
         $test_queue=TestQueue::with('patient','sales_invoice')->where('id',$id)->first();
         // dd($test_queue->test_id);
@@ -212,5 +213,37 @@ $data['test_status']=$this->test_status;
         $pdf->SetProtection(['print', 'print-highres'], '', 'pass');
         return $pdf->stream('test_report.pdf');
     }
+    public function upload_report_pdf(Request $request){
+
+       // dd($request->file('pdf_file'));
+        //strore pdf
+        if($request->file('pdf_file')==null){
+            return response()->json(['status'=>'error','message'=>'Please Select a File']);
+        }
+        $test_queue=TestQueue::where('id', $request->test_queue_id)->first();
+        $file = $request->file('pdf_file');
+        $file_name = time() . '.pdf';
+        $file->move(public_path('uploads/test_queue'), $file_name);
+        // $test_queue->report_pdf = $file_name;
+        $test_queue->report_file1=$file_name;
+        $test_queue->status='completed';
+        $test_queue->report_date=date('Y-m-d');
+        $test_queue->save();
+        //dd($test_queue);
+        return response()->json(['status'=>'success']);
+    }
+public function update_status(Request $request){
+    $test_queue=TestQueue::where('id', $request->test_queue_id)->first();
+    $test_queue->status=$request->status;
+    $test_queue->save();
+    $data['data'] = TestQueue::with('sales_invoice','test','test_package','patient')
+    ->where('id', $request->test_queue_id)
+    ->first();
+       $data['test_status']=$this->test_status;
+    $response['html'] = view('employee.test_queue.partials._queue_row', $data)->render();
+    //dd($response);
+    return response()->json(['status'=>'success','html'=>$response['html']]);
+}
+
 
 }

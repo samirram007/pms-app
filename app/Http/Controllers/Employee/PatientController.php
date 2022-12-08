@@ -67,6 +67,8 @@ public function select($id)
         //dd(Auth::guard('employee')->user());
         Validator::make($request->all(),[
             'name' => 'required',
+            'email' => 'nullable|email|unique:patients',
+            'code' => 'nullable|unique:patients',
         ]);
         $patient=new Patient();
         $patient->name=$request->name;
@@ -96,6 +98,11 @@ public function select($id)
         //     $patient['image']=$filename;
         // }
         $patient->save();
+        if($patient->code==null){
+            $patient->code='P'.str_pad($patient->id, 5, '0', STR_PAD_LEFT);
+            $patient->save();
+        }
+
         return redirect()->route('employee.patient.index')->with('success','Employee Created Successfully');
     }
 
@@ -139,10 +146,19 @@ public function select($id)
         Validator::make($request->all(),[
             'name' => 'required',
             'contact_no' => 'required|unique:patients,contact_no,'.$id,
+            'email' => 'nullable|unique:patients,email,'.$id,
+            'code' => 'nullable|unique:patients,code,'.$id,
         ]);
         $patient=Patient::find($id);
         $patient->name=$request->name;
-        $patient->code=$request->code;
+        if($patient->code==null){
+            $patient->code='P'.str_pad($id, 5, '0', STR_PAD_LEFT);
+
+        }
+        else{
+            $patient->code=$request->code;
+        }
+
         $patient->email=$request->email;
         $patient->contact_no=$request->contact_no;
         $patient->dob=$request->dob;

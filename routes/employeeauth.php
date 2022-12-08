@@ -188,6 +188,10 @@ Route::group(['middleware' => ['auth:employee'], 'prefix' => 'employee', 'as' =>
     Route::get('resetcode',[TestQueueController::class,'resetcode'])->name('test_queue.resetcode');
     Route::post('savecode',[TestQueueController::class,'savecode'])->name('test_prepare.savecode');
     Route::get('test_queue/pdf/{id}',[TestQueueController::class,'getpdf'])->name('test_queue.getpdf');
+    Route::post('test_queue/update_ststus',[TestQueueController::class,'update_status'])->name('test_queue.update_status');
+    Route::post('test_queue/upload_report_pdf',[TestQueueController::class,'upload_report_pdf'])->name('test_queue.upload_report_pdf');
+
+
 
 //==========================================================================================================================
 //========================== Report ====================================================================================

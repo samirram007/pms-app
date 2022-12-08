@@ -165,7 +165,7 @@
                                     </div>
 
 
-                                    <div class="row">
+                                    <div class="row d-none">
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="lab_centre_id">Lab Centre</label>
