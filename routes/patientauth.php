@@ -3,6 +3,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\Employee\TestQueueController;
 use App\Http\Controllers\Patient\SalesOrderController;
 use App\Http\Controllers\Patient\TestReportController;
 use App\Http\Controllers\Patient\SalesInvoiceController;
@@ -99,5 +100,6 @@ Route::get('sales_invoice/pay_now/{id}', [SalesInvoiceController::class, 'pay_no
 Route::post('sales_invoice/pay', [SalesInvoiceController::class, 'pay'])->name('sales_invoice.pay');
 Route::get('/booking/money_receipt/{id}', [SalesInvoiceController::class, 'money_receipt'])->name('money_receipt');
 Route::get('/test_report', [TestReportController::class, 'test_report'])->name('test_report');
+Route::get('test_queue/pdf/{id}',[TestQueueController::class,'getpdf'])->name('test_queue.getpdf');
 
 });

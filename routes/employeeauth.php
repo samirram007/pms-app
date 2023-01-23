@@ -19,6 +19,15 @@ use App\Http\Controllers\Employee\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Employee\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Employee\PatientController as EmployeePatientController;
 
+// use DataTables;
+
+// Route::get('user-data', function() {
+//     $model = App\Model\Patient::query();
+
+//     return DataTables::eloquent($model)
+//                     ->smart(false)
+//                     ->toJson();
+// });
 Route::group(['middleware' => ['guest:employee'], 'prefix' => 'employee', 'as' => 'employee.'], function () {
 
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -80,6 +89,7 @@ Route::group(['middleware' => ['auth:employee'], 'prefix' => 'employee', 'as' =>
 //========================== Patient ====================================================================================
 //==========================================================================================================================
     Route::get('patient', [EmployeePatientController::class, 'index'])->name('patient.index');
+    Route::get('patient/search', [EmployeePatientController::class, 'search'])->name('patient.search');
     Route::get('patient/create', [EmployeePatientController::class, 'create'])->name('patient.create');
     Route::post('patient/store', [EmployeePatientController::class, 'store'])->name('patient.store');
     // Route::post('patient/store', function(){

@@ -116,19 +116,19 @@ return [
         'admins' => [
             'provider' => 'admins',
             'table' => 'password_resets',
-            'expire' => 600000,
+            'expire' => 6000000,
             'throttle' => 60,
         ],
         'employees' => [
             'provider' => 'employees',
             'table' => 'password_resets',
-            'expire' => 600000,
+            'expire' => 6000000,
             'throttle' => 60,
         ],
         'patients' => [
             'provider' => 'patients',
             'table' => 'password_resets',
-            'expire' => 60,
+            'expire' => 6000000,
             'throttle' => 60,
         ],
     ],

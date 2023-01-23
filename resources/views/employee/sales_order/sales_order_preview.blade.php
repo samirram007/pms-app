@@ -16,18 +16,14 @@
                     </div><!-- /.col -->
                     <div class="col-sm-8">
                         <ol class="breadcrumb float-sm-right border-0  ">
-                            <li class="breadcrumb-item  align-content-center"><a
+                            <li class="breadcrumb-item d-flex  align-items-center"><a
                                     href="{{ route('employee.sales_order.create') }}" class=" "><span class="iconify"
                                         data-icon="ant-design:arrow-left-outlined" style="color: rgb(34, 130, 255);"
                                         data-width="20" data-height="20" data-rotate="180deg"
-                                        data-flip="horizontal,vertical"></span> Back to booking</a>
+                                        data-flip="horizontal,vertical"></span> <span class="sr-only"> Back to booking</span></a>
                             </li>
                             <li class="breadcrumb-item align-content-center"><a href="{{ route('employee.patient.index') }}"
-                                    class="">
-                                    <span class="iconify" data-icon="healthicons:virus-patient-outline"
-                                        style="color: rgb(8, 117, 90);" data-width="20" data-height="20"
-                                        data-rotate="180deg" data-flip="horizontal,vertical"></span>
-                                    Patient Information</a></li>
+                                    class="">Patient</a></li>
 
                             <li class="breadcrumb-item active  align-content-center"> Preview</li>
                         </ol>
@@ -383,8 +379,8 @@
                                                         <div
                                                             class="container-fluid mt-1 w-100 text-center justify-align-center">
                                                             <a href="javascript:"
-                                                                class="generate_invoice btn btn-outline-warning text-dark rounded btn-lg  px-5  mt-1 w-75">
-                                                                  Generate Invoice</a>
+                                                                class="generate_invoice btn btn-info  rounded btn-lg  px-5  mt-1">
+                                                                  Invoice</a>
                                                             {{-- @if($sub_total>0 && $total>0)
                                                             <a href="javascript:"
                                                                 class="pay-now btn btn-outline-warning text-dark rounded btn-lg  px-5  mt-1 w-75">

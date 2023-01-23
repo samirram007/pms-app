@@ -24,59 +24,66 @@
                                 </tr>
                             </thead>
                             <tbody>
-                        @forelse($test_report as $data)
-                        <tr id="queue{{ $data->id }}">
-                            <td>{{ $data['test']['name'] }}</td>
-                            <td class="text-center " style="overflow: inherit;">
-                                @php
-                                    if ($data->status == 'pending') {
-                                        $status_color = 'warning';
-                                    } elseif ($data->status == 'inprogress') {
-                                        $status_color = 'info';
-                                    } elseif ($data->status == 'completed') {
-                                        $status_color = 'success';
-                                    } elseif ($data->status == 'cancelled') {
-                                        $status_color = 'danger';
-                                    }
-                                    elseif($data->status == 'delivered'){
-                                        $status_color = 'dark';
-                                    }
-                                @endphp
-                                <div class="dropdown d-inline-flex">
-                                    <button class="btn btn-outline-link "> <span
-                                            class="badge badge-{{ $status_color }}">{{ ucfirst($data->status) }}</span></button>
+                                @forelse($test_report as $data)
+                                    <tr id="queue{{ $data->id }}">
+                                        <td>{{ $data['test']['name'] }}</td>
+                                        <td class="text-center " style="overflow: inherit;">
+                                            @php
+                                                if ($data->status == 'pending') {
+                                                    $status_color = 'warning';
+                                                } elseif ($data->status == 'inprogress') {
+                                                    $status_color = 'info';
+                                                } elseif ($data->status == 'completed') {
+                                                    $status_color = 'success';
+                                                } elseif ($data->status == 'cancelled') {
+                                                    $status_color = 'danger';
+                                                } elseif ($data->status == 'delivered') {
+                                                    $status_color = 'dark';
+                                                }
+                                            @endphp
+                                            <div class="dropdown d-inline-flex">
+                                                <button class="btn btn-outline-link "> <span
+                                                        class="badge badge-{{ $status_color }}">{{ ucfirst($data->status) }}</span></button>
 
-                                </div>
-                            </td>
-                            <td>
-                                {{-- @dd($data['report_file1']) --}}
-                                @if ($data['report_file1'] &&  in_array($data->status,['delivered']))
-                                    <a class="badge badge-info" href="{{ asset('uploads/test_queue/' . $data['report_file1']) }}"
-                                        target="_blank">Download</a>
-                                @else
-                                    @if ($data->code != null || $data->code != '')
-                                        @if(in_array($data->status,['delivered']))
-                                            <a target="_blank" class="badge badge-info"
-                                                href="{{ route('employee.test_queue.getpdf', $data->id) }}">Download</a>
-                                        @else
-                                            <span class="badge badge-danger">Ready</span>
-                                        @endif
-                                    @else
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{-- @dd($data['report_file1']) --}}
 
-                                            <span class="badge badge-danger">Pending</span>
+                                            @if ($data['report_file1'] && in_array($data->status, ['delivered', 'completed']))
+                                                @if ($current_due_amount > 0)
+                                                    <span class="badge badge-danger">Payment Due</span>
+                                                @else
+                                                    <a class="badge badge-info"
+                                                        href="{{ asset('uploads/test_queue/' . $data['report_file1']) }}"
+                                                        target="_blank">Download</a>
+                                                @endif
+                                            @else
+                                                @if ($data->code != null || $data->code != '')
+                                                    @if (in_array($data->status, ['delivered', 'completed']))
+                                                        @if ($current_due_amount > 0)
+                                                            <span class="badge badge-danger">Payment Due</span>
+                                                        @else
+                                                            <a target="_blank" class="badge badge-info"
+                                                                href="{{ route('patient.test_queue.getpdf', $data->id) }}">Download</a>
+                                                        @endif
+                                                    @else
+                                                        <span class="badge badge-danger">Ready</span>
+                                                    @endif
+                                                @else
+                                                    <span class="badge badge-danger">Pending</span>
+                                                @endif
+                                            @endif
 
-                                    @endif
-                                @endif
 
-
-                            </td>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="text-center">No Data Found</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                                        </td>
+                                    @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">No Data Found</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
 
                     </div>
                 </section>

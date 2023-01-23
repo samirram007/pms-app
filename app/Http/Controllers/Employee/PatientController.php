@@ -24,8 +24,17 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $collections=Patient::with('lab_centre')->get();
+        $collections=Patient::with('lab_centre')->take(50)->get();
         return  view('employee.patient.patient_index',compact('collections'));
+    }
+    public function search(Request $request)
+    {
+        $collections=Patient::with('lab_centre')->where('name','like','%'.$request->search.'%')->orWhere('code','like','%'.$request->search.'%')->orWhere('email','like','%'.$request->search.'%')->orWhere('contact_no','like','%'.$request->search.'%')->take(50)->get();
+        $html=view('employee.patient.patient_search_body',compact('collections'))->render();
+        return response()->json(['html'=>$html]);
+        // $collections=Patient::with('lab_centre')->where()->take(100)->get();
+
+        // return  view('employee.patient.patient_index',compact('collections'));
     }
 public function select($id)
 {
@@ -73,7 +82,7 @@ public function select($id)
         $patient=new Patient();
         $patient->name=$request->name;
         $patient->code=$request->code;
-        $patient->password=bcrypt('password');
+        $patient->password=$patient->code==null? bcrypt('password'):bcrypt($request->code);
         $patient->email=$request->email;
         $patient->contact_no=$request->contact_no;
         $patient->dob=$request->dob;
@@ -100,6 +109,7 @@ public function select($id)
         $patient->save();
         if($patient->code==null){
             $patient->code='P'.str_pad($patient->id, 5, '0', STR_PAD_LEFT);
+            $patient->password=bcrypt($patient->code);
             $patient->save();
         }
 
@@ -153,10 +163,11 @@ public function select($id)
         $patient->name=$request->name;
         if($patient->code==null){
             $patient->code='P'.str_pad($id, 5, '0', STR_PAD_LEFT);
-
+            $patient->password=bcrypt($patient->code);
         }
         else{
             $patient->code=$request->code;
+            //$patient->password=bcrypt($patient->code);
         }
 
         $patient->email=$request->email;

@@ -1,6 +1,13 @@
 @extends('layouts.main')
 @section('content')
-
+<style>
+    [contenteditable][placeholder]:empty:before {
+  content: attr(placeholder);
+  position: absolute;
+  color: gray;
+  background-color: transparent;
+}
+</style>
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
@@ -23,18 +30,23 @@
             <div class="rounded card p-3  bg-light shadow min-vh-100">
                 <div class="row   ">
                     <div class="col-md-12">
-                        <div class="card card-primary">
+                        <div class="card ">
                             <div class="card-body">
-                                <div class="row   border-bottom pb-2 mb-2">
-
-                                    <div class="col-sm-12 text-right">
-                                        <a href="{{ route('employee.patient.create') }}"
-                                            class="load-popup float-right btn btn-rounded btn-outline-info ">
-                                            <span class="iconify" data-icon="mdi:thermometer-plus" data-width="15"
-                                                data-height="15">
-                                            </span> add patient</a>
-
+                                <div class="row d-flex justify-center    ">
+                                    <div class="col-md-6 text-left d-flex border border-dark rounded">
+                                       <div contenteditable="true" class="search form-control border-none " id="search" name="search"
+                                       aria-placeholder="Enter your search here.."
+                                       placeholder="Enter your search here.."
+                                       oninput="if(this.innerHTML.trim()==='<br>')this.innerHTML=''" onkeyup="searchPatient();" ></div>
+                                       <a href="javascript:void(0)" onclick="searchPatient();"
+                                       class=" float-right btn btn-rounded btn-link ">
+                                       Search</a>
+                                       <span class="border-left border-info py-2"></span>
+                                       <a href="{{ route('employee.patient.create') }}"
+                                            class="load-popup float-right btn  btn-link ">
+                                             New</a>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -45,48 +57,8 @@
                     <div id="data-grid" class="data-tab-custom rounded">
 
 
-                        <div class="responsive">
-                            <table id="table" class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        {{-- <th>SL</th> --}}
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Code</th>
-                                        <th>Doctor</th>
-                                        <th>Lab</th>
-                                        <th>Email</th>
-                                        <th>ContactNo</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($collections as $key=> $data)
-                                    <tr>
-                                        {{-- <td>{{ $key+1 }}</td> --}}
-                                            <td><img
-                                                style="width: 50px; height:50px; border:1px solid #000000;"
-                                                src="{{ !empty($data->image) ? url('upload/user_images/' . $data->image) : url('upload/no_image.jpg') }}"
-                                                alt=""></td>
-                                            <td>{{ $data->name }}</td>
-                                            <td>{{ $data->code }}</td>
-                                            <td>{{ $data->doctor_name }}</td>
-                                            <td>{{ $data['lab_centre']['name'] }}</td>
-                                            <td>{{ $data->email }}</td>
-                                            <td class="text-wrap text-truncate">{{ $data->contact_no }}</td>
-                                            <td>
-                                                <a href="{{ route('employee.patient.select', $data->id) }}"
-                                                    class="btn btn-outline-info"> <span class="iconify" data-icon="mdi:view-dashboard" data-width="15" data-height="15" data-rotate="180deg"></span> Select</a>
+                        <div class="responsive" id="search_result">
 
-                                                <a href="{{ route('employee.patient.edit', $data->id) }}"
-                                                    class="btn btn-outline-info"><span class="iconify" data-icon="mdi:circle-edit-outline" data-width="15" data-height="15"></span> Edit</a>
-                                                <a href="{{ route('employee.patient.delete', $data->id) }}"
-                                                    class="btn btn-outline-info delete"><span class="iconify" data-icon="mdi:delete-sweep-outline" data-width="15" data-height="15"></span> Delete</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
                         </div>
 
 
@@ -97,11 +69,30 @@
     </div>
     <script>
 
-                $(document).ready( function () {
-                    $('#table').DataTable({
-                        responsive: true,
-                    });
-            } );
+            //     $(document).ready( function () {
+            //         $('#table').DataTable({
+            //             responsive: true,
+            //             searching: false,
+            //             paging: false,
+            //             info: false,
+            //             select: true,
+            //         });
+
+            // } );
+            searchPatient();
+            function searchPatient(){
+                var search = $('.search').text();
+                $.ajax({
+                    url: "{{ route('employee.patient.search') }}",
+                    type: "GET",
+                    data: {
+                        search: search,
+                    },
+                    success: function (data) {
+                        $('#search_result').html(data.html);
+                    }
+                });
+            }
 
     </script>
 @endsection

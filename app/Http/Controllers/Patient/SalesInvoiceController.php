@@ -59,14 +59,14 @@ class SalesInvoiceController extends Controller
 
         $data['from_date'] = $request->from_date;
         $data['to_date'] = $request->to_date;
-//dd(Auth::guard('patient')->user()->id);
+        //dd(Auth::guard('patient')->user()->id);
         // $data['lab_centre'] = LabCentre::find($request->lab_centre_id);
         $data['collections'] = SalesInvoice::with(['created_by_user', 'patient'])
        -> where('patient_id', Auth::guard('patient')->user()->id)
             ->whereBetween(DB::raw("DATE_FORMAT(invoice_date,'%Y-%m-%d')"), [$request->from_date, $request->to_date])
             ->OrderBy('created_at', 'desc')->get();
         $response['body'] = view('patient.sales_invoice.sales_invoice_index_body', $data)->render();
-      //dd($data['collections']);
+        //dd($data['collections']);
         //dd($data['lab_centre']);
         return response()->json($response);
     }
