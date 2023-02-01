@@ -4,17 +4,18 @@
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h4 class="text-dark">Test List</h4>
-
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right border-0">
+                <div class="row">
+                    <div class="col-10">
+                        <h2 class="text-dark h4 m-0">Test List</h2>
+<ol class="breadcrumb border-0 small">
                             <li class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"
                                     class="text-active">Dashboard</a></li>
                             <li class="breadcrumb-item active">Test List</li>
                         </ol>
+                    </div><!-- /.col -->
+                    <div class="col-2 d-flex justify-content-end align-items-start">
+                        <a href="{{ route('admin.test.create') }}" style="width:8rem;" class=" position-absolute load-popup  btn btn-rounded btn-primary "> ADD TEST</a>
+
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -22,9 +23,6 @@
         <section class="content">
             <div class="rounded card p-3  bg-light shadow min-vh-100">
                 <div class="header-marge-panel ">
-                    <a href="{{ route('admin.test.create') }}" class="load-popup  btn btn-rounded btn-primary py-1">
-                        <span class="iconify" data-icon="mdi:thermometer-plus" data-width="15" data-height="15">
-                        </span> ADD TEST</a>
 
                 </div>
 
