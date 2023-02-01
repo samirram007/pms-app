@@ -1,30 +1,235 @@
- /* ============ desktop view ============ */
- .bd-navbar {
-    padding: .75rem 0;
+@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300;700;900&display=swap");
+
+body {
+    font-family: "Sofia Sans", sans-serif;
+    line-height: 1.7;
+    color: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600 !important;
+}
+
+a {
+    color: rgba(59, 0, 114, 0.89);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+img {
+    width: 100%;
+}
+
+section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.bg-cover {
+    background-position: center !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+/*=================Top Nav ========================= */
+.top-nav {
+    background-color: rgb(255, 255, 255);
+    padding-top: 0.313rem;
+    padding-bottom: 0.313rem;
+}
+
+.top-nav p {
+    margin-bottom: 0;
+    display: inline-block;
+    margin-right: 1rem;
+    color: rgb(121, 82, 180);
+}
+
+.top-nav i,
+.top-nav span {
+    vertical-align: middle;
+}
+
+.social-links a {
+    width: 2.125rem;
+    height: 2.135rem;
+    background-color: rgba(94, 94, 94, 0.788);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.16rem;
+    border-radius: 100%;
+    margin: 0 0.476rem;
+}
+
+.social-links a:hover {
+    background-color: white;
+    color: rgb(121, 82, 180);
+}
+
+.welcome-nav {
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+    font-family: "Sofia Sans Black 900", sans-serif;
+    font-weight: 900;
+    font-size: 1.9rem;
+    color: rgb(121, 82, 180);
+}
+
+.sign-up-btn {
+    padding: 0.563rem 1.5rem;
+    font-weight: 800;
+}
+
+.welcome-nav .container .navbar-nav .nav-item .nav-link:hover,
+.welcome-nav .container .navbar-nav .nav-item .nav-link.active {
+    color: rgba(0, 139, 139, 0.87);
+}
+
+.steady1 {
+    background: linear-gradient(
+            rgba(255, 179, 216, 0.106),
+            rgba(252, 192, 222, 0.109)
+        ),
+        url("/images/page_content.jpg");
+    width: 100%;
+    height: 80vh;
+}
+
+.info-container {
+    background-color: #662299;
+    height: 100%;
+    padding: 20px;
+    border-radius: 10px 0px 0px 10px;
+    box-shadow: 0px 2px 25px rgb(0, 0, 0, 10%);
+}
+
+.contact .info-item {
+    width: 100%;
+    background-color: #662299;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.contact .info-item i {
+    font-size: 20px;
+    color: #fff;
+    float: left;
+    width: 44px;
+    height: 44px;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+    margin-right: 15px;
+}
+
+.contact .info-item h4 {
+    padding: 0;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.wrapper .login_form {
+    background-color: #c297e69c;
+}
+
+.services .service-item {
+    padding: 40px;
+    background: #fff;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: -1px 2px 25px 12px rgb(0, 0, 0, 20%);
+}
+
+.services .service-item .icon {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    margin-bottom: 50px;
+}
+.services .service-item .icon i {
+    color: var(--color-default);
+    font-size: 56px;
+    transition: ease-in-out 0.3s;
+    z-index: 2;
+    position: relative;
+}
+
+.services .service-item h3 {
+    color: var(--color-default);
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    padding-bottom: 8px;
+    font-size: 22px;
+    position: relative;
+    display: inline-block;
+    border-bottom: 4px solid #eeeeee;
+    transition: 0.3s;
+}
+
+.services .service-item p {
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.services .service-item .readmore {
+    margin-top: 15px;
+    display: inline-block;
+    color: var(--color-primary);
+}
+
+/* ============ desktop view ============ */
+.bd-navbar {
+    padding: 0.75rem 0;
     background-color: #7952b4;
 }
 
 .dropdown-menu-dark {
     color: #dee2e6;
-    background-color:  #7952b4!important;
+    background-color: #7952b4 !important;
     border-color: rgba(0, 0, 0, 0.15);
 }
-.dropdown-menu-dark .dropdown-item:hover, .dropdown-menu-dark .dropdown-item:focus {
-    color: #7952b4!important;
+.dropdown-menu-dark .dropdown-item:hover,
+.dropdown-menu-dark .dropdown-item:focus {
+    color: #7952b4 !important;
     background-color: rgba(255, 255, 255, 0.15);
 }
-.dropdown-menu-dark .dropdown-item.active, .dropdown-menu-dark .dropdown-item:active {
-    color: #fff!important;
-    background-color: #662299!important;
+.dropdown-menu-dark .dropdown-item.active,
+.dropdown-menu-dark .dropdown-item:active {
+    color: #fff !important;
+    background-color: #662299 !important;
 }
-.container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
     width: 100%;
-    padding-right: var(--bs-gutter-x, 0.75rem)!important;
-    padding-left: var(--bs-gutter-x, 0.75rem)!important;
+    padding-right: var(--bs-gutter-x, 0.75rem) !important;
+    padding-left: var(--bs-gutter-x, 0.75rem) !important;
     margin-right: auto;
     margin-left: auto;
 }
- @media all and (min-width: 992px) {
+@media all and (min-width: 992px) {
     .dropdown-menu li {
         position: relative;
     }
@@ -41,11 +246,11 @@
         left: auto;
     }
 
-    .dropdown-menu>li:hover {
-        background-color: #f1f1f1
+    .dropdown-menu > li:hover {
+        background-color: #f1f1f1;
     }
 
-    .dropdown-menu>li:hover>.submenu {
+    .dropdown-menu > li:hover > .submenu {
         display: block;
     }
 }
@@ -54,15 +259,29 @@
 
 /* ============ small devices ============ */
 @media (max-width: 991px) {
-    .dropdown-menu   {
+    .dropdown-menu {
         margin-left: 0.7rem;
         margin-right: 0.7rem;
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
     }
-
 }
 
 /* ============ small devices .end// ============ */
 
+#footer {
+    background-color: rgb(99, 0, 124);
+}
 
-
+#footer .social_links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-right: 10px;
+    transition: 0.3s;
+}
