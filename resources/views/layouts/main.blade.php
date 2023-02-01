@@ -38,49 +38,52 @@
     <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/ekko-lightbox/ekko-lightbox.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/skydash.css')}}">
+    {{--
+    <link rel="stylesheet" href="{{asset('css/skydash.css')}}">
     <link rel="stylesheet" href="{{asset('css/custom.css')}}"> --}}
 
-      <!-- jQuery -->
-      <script src="{{asset('plugins/jquery/jquery.min.js')}}" ></script>
-      {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-      <!-- jQuery UI 1.11.4 -->
-      <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}" defer></script>
-      <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}" defer></script>
+    <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+    </script>
 
-      <script src="{{asset('plugins/bootstrap/js/bootstrap.js')}}"></script>
-      <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.js')}}"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script src="{{asset('plugins/bootstrap/js/bootstrap.js')}}"></script>
+    <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.js')}}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         // $.widget.bridge('uibutton', $.ui.button)
     </script>
-    <style>
-        .main-footer {
-    background-color: #fff;
-    border-top: 1px solid #dee2e6;
-    color: #869099;
-    padding: 1rem;
-    bottom: 0;
-    position: fixed;
-    width: 100%;
-    z-index: 1030;
-}
-.content-wrapper{
-    padding-bottom:60px;
-}
-    </style>
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            .main-footer {
+        background-color: #fff;
+        border-top: 1px solid #dee2e6;
+        color: #869099;
+        padding: 1rem;
+        bottom: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 1030;
+    }
+    .content-wrapper{
+        padding-bottom:60px;
+    }
+        </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-      @include('layouts.modal')
+        @include('layouts.modal')
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{asset('images/logo-dark.png')}}" alt="PMSLogo" height="60"
-                width="60">
+            <img class="animation__shake" src="{{asset('images/logo-dark.png')}}" alt="PMSLogo" height="60" width="60">
         </div>
 
         <!-- Navbar -->
@@ -101,7 +104,8 @@
                 @yield('content')
             </section>
             <!-- /.content -->
-        {{-- </div> --}}
+            {{--
+        </div> --}}
         <!-- /.content-wrapper -->
 
         <!-- Control Sidebar -->
@@ -120,7 +124,9 @@
 
     {{-- proper --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+        integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <!-- ChartJS -->
     <script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
     <!-- Sparkline -->
@@ -141,20 +147,20 @@
     <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 
     <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
-<script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
-<script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
-<script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
+    <script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+    </script>
 
     <!-- AdminLTE App -->
     <script src="{{asset('dist/js/adminlte.js')}}"></script>
@@ -164,8 +170,7 @@
     {{-- <script src="{{asset('dist/js/pages/dashboard.js')}}"></script> --}}
 
     <script>
-
-         $('#rems-popup').on('shown.bs.modal', function() {
+        $('#rems-popup').on('shown.bs.modal', function() {
             $('.cp-datepicker').daterangepicker({
                 singleDatePicker: true,
                 timePicker: false,
@@ -270,7 +275,7 @@
 
         });
     </script>
-      <script>
+    <script>
         $('.dropdown-toggle').dropdown();
     </script>
     <script>
@@ -309,7 +314,7 @@
         }
                 toastr.warning("{{ session('warning') }}");
         @endif
-      </script>
+    </script>
 
 
 </body>
