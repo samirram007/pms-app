@@ -6,7 +6,7 @@
                     <h1 class="fw-bold fs-1 my-3 text-black text-center" style="color:rgba(21, 0, 61, 0.986)">
                         Protect Your
                         Future</h1>
-                    <p class="fs-4 text-center fw-bold" style="color:rgba(21, 0, 61, 0.986)">We are here to text your
+                    <p class="fs-4 text-center fw-bold" style="color:rgba(21, 0, 61, 0.986)">We are here to test your
                         disease and warn you about them to be
                         safe and
                         take
@@ -28,7 +28,7 @@
                                     @csrf
                                     <div class="form-group mt-4">
                                         <i class="bi bi-person-fill"></i>
-                                        <input type="text" name="name" id="" class="myInput" placeholder="Enter Name">
+                                        <input type="text" name="name" id="" class="myInput" placeholder="Enter Email">
                                     </div>
                                     <div class="form-group mt-2">
                                         <i class="bi bi-person-fill-lock"></i>
