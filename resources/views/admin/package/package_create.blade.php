@@ -1,16 +1,12 @@
 @extends('layouts.main')
 @section('content')
-
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h4 class="text-dark py-2">Create Package </h4>
-
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right border-0">
+                <div class="row ">
+                    <div class="col-10">
+                        <h4 class="text-dark h4 m-0">Create Package </h4>
+                        <ol class="breadcrumb small border-0">
                             <li class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"
                                     class="text-active">Dashboard</a></li>
                             <li class="breadcrumb-item "><a href="{{ route('admin.package.index') }}"
@@ -19,6 +15,11 @@
                             <li class="breadcrumb-item active"> Create Package</li>
                         </ol>
                     </div><!-- /.col -->
+                    <div class="col-2  d-flex justify-content-end align-items-start">
+                        <button type="button" style="width:8rem;"
+                            class=" position-absolute load-popup  btn btn-rounded btn-primary bg-primary "> Save
+                            package</button>
+                    </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -26,121 +27,133 @@
             <div class="rounded card p-3 bg-white shadow min-vh-100">
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <div class="card card-primary">
-                            <form action="{{ route('admin.package.store') }}" method="post"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('admin.package.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
-                                    <div class="row   border-bottom pb-2 mb-2">
+                                    {{-- <div class="row   border-bottom pb-2 mb-2">
                                         <div class="col-sm-12 text-right">
                                             <button type="submit"
-                                                class="load-popup float-right btn btn-rounded btn-outline-info ">
-                                                <span class="iconify" data-icon="lucide:package-plus" data-width="15"
-                                                    data-height="15"></span>
-                                                </span> Save package</button>
+                                                class="load-popup float-right btn btn-rounded btn-info "> Save package</button>
 
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="name">Package Name</label>
-                                                <input type="text" class="form-control" id="name" name="name"
-                                                    placeholder="Enter Test Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="name">Test Code</label>
-                                                <input type="text" class="form-control" id="code" name="code"
-                                                    placeholder="Enter Test Code">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="start_date">Package Start Date</label>
-                                                <input type="date" class="form-control" id="start_date" name="start_date"
-                                                    placeholder="Enter Start Date" value={{ date('Y-m-d') }}>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="end_date">Package Closing Date</label>
-                                                <input type="date" class="form-control" id="end_date" name="end_date"
-                                                    placeholder="Enter End Date"
-                                                    value="{{ date('Y-m-d', strtotime('+2 years')) }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="name">Package Description</label>
-                                                <textarea class="form-control" id="description" name="description" placeholder="Enter Test Description"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12 px-4  mt-4 border-bottom border-primary ">List of Test included in this
-                                            package</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="row  mt-0 pt-2">
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="test">Select Test</label>
-                                                        <div class="controls">
-
-                                                            <select name="test" id="test" class="form-control test">
-                                                                <option value="">Select test</option>
-                                                                @foreach ($collection as $item)
-                                                                    <option value="{{ $item->id }}"
-                                                                        data-amount="{{ $item->amount }}">
-                                                                        {{ $item->name }}</option>
-                                                                @endforeach
-                                                                {{-- @dd($item) --}}
-                                                            </select>
-                                                            @error('test')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
+                                                        <label for="name">Package Name</label>
+                                                        <input type="text" class="form-control" id="name"
+                                                            name="name" placeholder="Enter Test Name">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4 col-sm-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="test_cost">Amount</label>
-                                                        <input type="text" class="form-control test_cost"
-                                                            id="test_cost" name="test_cost"
-                                                            placeholder="Enter Package Amount">
+                                                        <label for="name">Test Code</label>
+                                                        <input type="text" class="form-control" id="code"
+                                                            name="code" placeholder="Enter Test Code">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2 col-sm-6 text-center m-auto  ">
-
-                                                    <div class="text-center">
-                                                        <span id="addtest" onclick="addtest();"
-                                                            class=" btn btn-rounded btn-outline-info  p-0  ">
-                                                            <span class="iconify" data-icon="akar-icons:circle-plus"
-                                                                data-width="30" data-height="30"></span></span>
-
-
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="start_date">Package Start Date</label>
+                                                        <input type="date" class="form-control" id="start_date"
+                                                            name="start_date" placeholder="Enter Start Date"
+                                                            value={{ date('Y-m-d') }}>
                                                     </div>
                                                 </div>
-
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="end_date">Package Closing Date</label>
+                                                        <input type="date" class="form-control" id="end_date"
+                                                            name="end_date" placeholder="Enter End Date"
+                                                            value="{{ date('Y-m-d', strtotime('+2 years')) }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="name">Package Description</label>
+                                                        <textarea class="form-control" id="description" name="description" placeholder="Enter Test Description"></textarea>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-12 border-bottom border-info my-1 px-4"></div>
-                                            <div class="p-3" id="Testpanel">
+                                        </div>
 
+
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12 px-4 border-bottom border-primary ">List of
+                                                            Test
+                                                            included in this package</div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="row  mt-0 pt-2">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="test">Select Test</label>
+                                                                        <div class="controls">
+
+                                                                            <select name="test" id="test"
+                                                                                class="form-control test">
+                                                                                <option value="">Select test</option>
+                                                                                @foreach ($collection as $item)
+                                                                                    <option value="{{ $item->id }}"
+                                                                                        data-amount="{{ $item->amount }}">
+                                                                                        {{ $item->name }}</option>
+                                                                                @endforeach
+                                                                                {{-- @dd($item) --}}
+                                                                            </select>
+                                                                            @error('test')
+                                                                                <span
+                                                                                    class="text-danger">{{ $message }}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="test_cost">Amount</label>
+                                                                        <input type="text" class="form-control test_cost"
+                                                                            id="test_cost" name="test_cost"
+                                                                            placeholder="Enter Package Amount">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2 col-sm-6 text-center m-auto  ">
+
+                                                                    <div class="text-center">
+                                                                        <span id="addtest" onclick="addtest();"
+                                                                            class=" btn btn-rounded btn-outline-info  p-0  ">
+                                                                            <span class="iconify"
+                                                                                data-icon="akar-icons:circle-plus"
+                                                                                data-width="30"
+                                                                                data-height="30"></span></span>
+
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-12 border-bottom border-info my-1 px-4">
+                                                            </div>
+                                                            <div class="p-3" id="Testpanel">
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>
-
                                     </div>
+
 
 
                                     <div class="row border border-success   rounded p-3 bg-light">
@@ -148,7 +161,7 @@
                                             <div class="form-group">
                                                 <label for="cost">Cost</label>
                                                 <input type="text" class="form-control" id="cost" name="cost"
-                                                    readonly  placeholder="Enter Package Cost">
+                                                    readonly placeholder="Enter Package Cost">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -170,7 +183,7 @@
 
                                     </div>
 
-                                    <div class="row   border-top pt-2 mt-2">
+                                    {{-- <div class="row   border-top pt-2 mt-2">
                                         <div class="col-sm-12 text-right">
                                             <button type="submit"
                                                 class="load-popup float-right btn btn-rounded btn-outline-info ">
@@ -179,7 +192,7 @@
                                                 </span> Save package</button>
 
                                         </div>
-                                    </div>
+                                    </div> --}}
 
 
                                 </div>

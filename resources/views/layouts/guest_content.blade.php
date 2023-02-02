@@ -11,7 +11,7 @@
                     <div class="rounded ">
                         <div class="card login_form">
                             <div class="card-body">
-                                <h3 class="card-title fs-2 text-center  fw-bold">Get Started with Us</h3>
+                                <h3 class="card-title fs-2 text-center  fw-bold">Login here...</h3>
                                 <form action="" method="post">
                                     @csrf
                                     <div class="form-floating mb-3">

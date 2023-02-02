@@ -58,6 +58,22 @@
     <script>
         // $.widget.bridge('uibutton', $.ui.button)
     </script>
+
+        <style>
+            .main-footer {
+        background-color: #fff;
+        border-top: 1px solid #dee2e6;
+        color: #869099;
+        padding: 1rem;
+        bottom: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 1030;
+    }
+    .content-wrapper{
+        padding-bottom:60px;
+    }
+        </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -91,11 +107,12 @@
             {{--
         </div> --}}
         <!-- /.content-wrapper -->
-        @include('layouts.footer')
+
         <!-- Control Sidebar -->
-        @include('layouts.rightbar')
+        {{-- @include('layouts.rightbar') --}}
         <!-- /.control-sidebar -->
     </div>
+    @include('layouts.footer')
     <!-- ./wrapper -->
 
     @include('sweetalert::alert')
