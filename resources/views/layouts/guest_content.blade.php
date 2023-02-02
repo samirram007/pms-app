@@ -1,33 +1,62 @@
 <div class="wrapper">
     <div class="steady1  bg-cover d-flex align-items-center">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-6 col-sm-6 col-md-6">
-                    <h1 class="fw-bold fs-3 my-3 text-black">"One rarely falls in love without being as much attracted
-                        to what is interestingly wrong with someone as what is objectively healthy."</h1>
-
+                <div class="col col-sm-12 col-md-6">
+                    <h1 class="fw-bold fs-1 my-3 text-black text-center" style="color:rgba(21, 0, 61, 0.986)">
+                        Protect Your
+                        Future</h1>
+                    <p class="fs-4 text-center fw-bold" style="color:rgba(21, 0, 61, 0.986)">We are here to text your
+                        disease and warn you about them to be
+                        safe and
+                        take
+                        medicines</p>
+                    <p class="text-center fs-4 fw-bold" style="color:rgba(21, 0, 61, 0.986)"> Get Your First
+                        <button class="btn btn-outline-primary border-3 fw-bold"
+                            style="color:rgba(21, 0, 61, 0.986)">Checkup</button>
+                        done
+                        today
+                    </p>
                 </div>
-                <div class="col-md-4 col-6">
-                    <div class="rounded ">
-                        <div class="card login_form">
-                            <div class="card-body">
-                                <h3 class="card-title fs-2 text-center  fw-bold">Login here...</h3>
-                                <form action="" method="post">
+                <div class="col-md-6 col-sm-6 login-form">
+                    <div class="card d-flex float-end" style="width: 22rem">
+                        <div class="card-body">
+                            <p class="card-title text-center text-white">Health is Wealth</p>
+                            <h2 class="card-title text-center text-white">Get a Checkup</h2>
+                            <div class="card-text">
+                                <form action="" method="post" class="text-center">
                                     @csrf
-                                    <div class="form-floating mb-3">
-                                        <input type="email" class="form-control rounded-2" id="floatingInput"
-                                            placeholder="name@example.com">
-                                        <label for="floatingInput">Email address</label>
+                                    <div class="form-group mt-4">
+                                        <i class="bi bi-person-fill"></i>
+                                        <input type="text" name="name" id="" class="myInput" placeholder="Enter Name">
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input type="password" class="form-control rounded-2" id="floatingPassword"
-                                            placeholder="Password">
-                                        <label for="floatingPassword">Password</label>
+                                    <div class="form-group mt-2">
+                                        <i class="bi bi-person-fill-lock"></i>
+                                        <input type="password" name="password" id="" class="myInput"
+                                            placeholder="Enter Password">
                                     </div>
-                                    <button class="btn btn-dark btn-lg rounded w-100">LogIn</button>
+                                    <input type="button" value="Login"
+                                        class="button rounded-5 mt-4 w-50 btn bg-black text-white">
                                 </form>
                                 <div class="mt-2">
-                                    <a href="" class="fw-bold fs-6">Forgot Password?</a>
+                                    <a href="" class="text-decoration-none text-white">Register Now!</a>
+                                </div>
+                                <div class="container py-3">
+                                    <p class="text-center text-white" style="font-size: 14.5px; font-weight:600">Or
+                                        Connect With
+                                    </p>
+                                    <hr style="color:white;">
+                                    <div class="row text-center py-1">
+                                        <div class="col">
+                                            <i class="bi bi-facebook social-links"></i>
+                                        </div>
+                                        <div class="col">
+                                            <i class="bi bi-instagram social-links"></i>
+                                        </div>
+                                        <div class="col">
+                                            <i class="bi bi-twitter social-links"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -37,13 +66,36 @@
         </div>
     </div>
 </div>
+
+<section class="About container-fluid mt-5" style="background-color: #7f4ea5">
+    <header class="fw-bold mb-2 pb-5 text-white text-center position-relative" style="font-size: 32px;">
+        About-Us</header>
+    <div class="container-fluid mt-2">
+        <div class="row gx-lg-0 gy-4">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <img src="{{asset('images/lab-img.jpg')}}" alt="" srcset="">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 px-5">
+                <p class="text-white fs-5">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate voluptates excepturi
+                    accusantium expedita, placeat fugit itaque quae facilis illo culpa quaerat, aut, corrupti voluptatum
+                    velit illum eveniet at dignissimos quisquam!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum quibusdam minima deserunt, totam
+                    repellat libero veritatis itaque earum ab? Quas deleniti tenetur quaerat. Cum minus voluptates
+                    natus. Ipsum, eum vero?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias quia rerum illum
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 <section class="services">
     <div class="container">
         <h2 class="text-center fw-bold fs-2" style="font-size: 32px; color:rgb(121, 81, 132)">Services</h2>
         <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis at fugiat laudantium ame
         </p>
-        <div class="row gy-4 mt-5">
-            <div class="col-md-6 col-lg-4" style="flex: 0 0 auto; width:33.33%;">
+        <div class="row mt-5">
+            <div class="col-md-6 col-lg-4 col-sm-4 mt-3" style="flex: 0 0 auto;">
                 <div class="service-item position-relative">
                     <div class="icon">
                         <i class="bi bi-activity"></i>
@@ -53,9 +105,8 @@
                         voluptatibus officiis dolor est facilis?</p>
                     <a href="" class="readmore stretched-link fw-bold fs-5 text-success">Book-></a>
                 </div>
-
             </div>
-            <div class="col-md-6 col-lg-4" style="flex: 0 0 auto; width:33.33%;">
+            <div class="col-md-6 col-lg-4 col-sm-4 mt-3" style="flex: 0 0 auto;">
                 <div class="service-item position-relative">
                     <div class="icon">
                         <i class="bi bi-activity"></i>
@@ -67,7 +118,7 @@
                 </div>
 
             </div>
-            <div class="col-md-6 col-lg-4" style="flex: 0 0 auto; width:33.33%;">
+            <div class="col-md-6 col-lg-4 col-sm-4 mt-3" style="flex: 0 0 auto; ">
                 <div class="service-item position-relative">
                     <div class="icon">
                         <i class="bi bi-activity"></i>
@@ -79,7 +130,9 @@
                 </div>
 
             </div>
-            <div class="col-md-6 col-lg-4" style="flex: 0 0 auto; width:33.33%;">
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6 col-lg-4 mt-3" style="flex: 0 0 auto;">
                 <div class="service-item position-relative">
                     <div class="icon">
                         <i class="bi bi-activity"></i>
@@ -91,7 +144,7 @@
                 </div>
 
             </div>
-            <div class="col-md-6 col-lg-4" style="flex: 0 0 auto; width:33.33%;">
+            <div class="col-md-6 col-lg-4 mt-3" style="flex: 0 0 auto;">
                 <div class="service-item position-relative">
                     <div class="icon">
                         <i class="bi bi-activity"></i>
@@ -103,7 +156,7 @@
                 </div>
 
             </div>
-            <div class="col-md-6 col-lg-4" style="flex: 0 0 auto; width:33.33%;">
+            <div class="col-md-6 col-lg-4 mt-3" style="flex: 0 0 auto;">
                 <div class="service-item position-relative">
                     <div class="icon">
                         <i class="bi bi-activity"></i>
@@ -115,6 +168,7 @@
                 </div>
 
             </div>
+
         </div>
     </div>
 </section>
@@ -150,7 +204,7 @@
             </div>
         </div>
         <div class="col-lg-8 col-md-8 col-sm-8">
-            <div class="px-3">
+            <div class="px-5">
                 <h1 class="text-center fw-bold fs-2">Book an Appoinment</h1>
                 <p class="mt-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, quam odit? Debitis
                     accusantium tempora, consequuntur laboriosam .</p>
@@ -158,16 +212,20 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-6 mt-2 form-group">
+                            <label for="" class="text-black fw-bold">Name</label>
                             <input type="text" name="name" id="" class="form-control" placeholder="Your Name">
                         </div>
                         <div class="col-md-6 mt-2 form-group">
+                            <label for="" class="text-black fw-bold">Email</label>
                             <input type="email" name="email" id="" class="form-control" placeholder="Your Email">
                         </div>
                         <div class="col-md-6 mt-3 form-group">
+                            <label for="" class="text-black fw-bold">Phone Number</label>
                             <input type="number" name="contact_no" id="" class="form-control"
                                 placeholder="Your Phone Number">
                         </div>
                         <div class="col-md-6 mt-3 form-group">
+                            <label for="" class="text-black fw-bold">Test Type</label>
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>Select Test Type</option>
                                 <option value="1">One</option>
