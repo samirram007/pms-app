@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{env('APP_URL')}}</title>
     <link rel="shortcut icon" href="{{asset('images/logo-dark.png')}}" />
     <!-- Google Font: Source Sans Pro -->
@@ -42,6 +43,8 @@
     <link rel="stylesheet" href="{{asset('css/skydash.css')}}">
     <link rel="stylesheet" href="{{asset('css/custom.css')}}"> --}}
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- jQuery -->
     <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
@@ -59,21 +62,22 @@
         // $.widget.bridge('uibutton', $.ui.button)
     </script>
 
-        <style>
-            .main-footer {
-        background-color: #fff;
-        border-top: 1px solid #dee2e6;
-        color: #869099;
-        padding: 1rem;
-        bottom: 0;
-        position: fixed;
-        width: 100%;
-        z-index: 1030;
-    }
-    .content-wrapper{
-        padding-bottom:60px;
-    }
-        </style>
+    <style>
+        .main-footer {
+            background-color: #fff;
+            border-top: 1px solid #dee2e6;
+            color: #869099;
+            padding: 1rem;
+            bottom: 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        .content-wrapper {
+            padding-bottom: 60px;
+        }
+    </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -102,6 +106,12 @@
             <!-- Main content -->
             <section class="content">
                 @yield('content')
+
+
+                <div class="modal fade" id="modal-popup" data-bs-backdrop="static" role="dialog"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+                </div>
             </section>
             <!-- /.content -->
             {{--
@@ -121,6 +131,8 @@
     <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
     {{-- <script src="{{asset('plugins/popper/popper.js')}}"></script> --}}
     <!-- Bootstrap 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
+    </script>
 
     {{-- proper --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js"></script>
@@ -169,6 +181,48 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     {{-- <script src="{{asset('dist/js/pages/dashboard.js')}}"></script> --}}
 
+
+    <script type="text/javascript">
+        $(function(){
+
+            $.ajaxSetup({
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(document).on("click", ".load-popup", function(e){
+
+
+                e.preventDefault;
+                var param = $(this).data('param');
+                var url = $(this).data('url');
+                var size = $(this).data('size');
+
+                $.ajax({
+                    url: url,
+                    type: "get",
+                    headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data:{
+                        "param":param,
+                        "size":size,
+                    },
+                    success: function(data){
+                        // console.log(data);
+                        $("#modal-popup").html(data['html']);
+                        $("#modal-popup").modal('show');
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
     <script>
         $('#rems-popup').on('shown.bs.modal', function() {
             $('.cp-datepicker').daterangepicker({
@@ -186,94 +240,96 @@
                 }
             });
         });
-        $(document).on("click", ".load-popup", function() {
-            //e.preventDefault();
-            var param = $(this).data('param');
-            var url = $(this).data('url');
-            var size = $(this).data('size');
-            // console.log(param);
-            //  $(".page-loader").show();
-            $.ajax({
-                url: url,
-                type: "get",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: {
-                    'param': param,
-                    'size': size
-                },
-                success: function(data) {
-                    // console.log(data);
-                    //console.log(ko.toJSON(response));
-                    if (!data.error) {
-                        $("#rems-popup").html(data['html']);
-                        $("#rems-popup").modal('show');
-                    } else {
-                        console.log(data);
-                    }
+        // $(document).on("click", ".load-popup", function(e) {
+        //     e.preventDefault();
 
-                    //  $(".page-loader").hide();
-                },
-                error: function(xhr, status, error) {
-                    console.log(xhr);
-                    //$(".page-loader").hide();
-                    //console.log(arguments);
-                    /*  var msg =
-                          '<div id="inner-message" class="alert alert-error shadow"><button type="button" class="close" data-dismiss="alert">&times;</button>' +
-                          error + '</div>';
-                      $("#message").html(msg);*/
-                }
 
-            })
+        //     var param = $(this).data('param');
+        //     var url = $(this).data('url');
+        //     var size = $(this).data('size');
+        //     // console.log(param);
+        //     //  $(".page-loader").show();
+        //     $.ajax({
+        //         url: url,
+        //         type: "get",
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         },
+        //         contentType: "application/json; charset=utf-8",
+        //         dataType: "json",
+        //         data: {
+        //             'param': param,
+        //             'size': size
+        //         },
+        //         success: function(data) {
+        //             // console.log(data);
+        //             //console.log(ko.toJSON(response));
+        //             if (!data.error) {
+        //                 $("#rems-popup").html(data['html']);
+        //                 $("#rems-popup").modal('show');
+        //             } else {
+        //                 console.log(data);
+        //             }
 
-        });
-        $(document).on("click", ".render-popup", function() {
-            // e.preventDefault();
-            $("#rems-popup").html('');
+        //             //  $(".page-loader").hide();
+        //         },
+        //         error: function(xhr, status, error) {
+        //             console.log(xhr);
+        //             //$(".page-loader").hide();
+        //             //console.log(arguments);
+        //             /*  var msg =
+        //                   '<div id="inner-message" class="alert alert-error shadow"><button type="button" class="close" data-dismiss="alert">&times;</button>' +
+        //                   error + '</div>';
+        //               $("#message").html(msg);*/
+        //         }
 
-            var param = $(this).data('param');
-            var url = $(this).data('url');
-            //  console.log(param);
-            //  $(".page-loader").show();
-            $.ajax({
-                url: url,
-                type: "get",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: {
-                    'param': param
-                },
-                success: function(data) {
-                      console.log(data);
-                    //console.log(ko.toJSON(response));
-                    if (!data.error) {
-                        $("#rems-popup").html(data['html']);
-                        $("#rems-popup").modal('show');
-                    } else {
-                        console.log(data);
-                    }
+        //     })
 
-                    //  $(".page-loader").hide();
-                },
-                error: function(xhr, status, error) {
-                    //console.log(xhr);
-                    //$(".page-loader").hide();
-                    //console.log(arguments);
-                    /*  var msg =
-                          '<div id="inner-message" class="alert alert-error shadow"><button type="button" class="close" data-dismiss="alert">&times;</button>' +
-                          error + '</div>';
-                      $("#message").html(msg);*/
-                }
+        // });
+        // $(document).on("click", ".render-popup", function() {
+        //     // e.preventDefault();
+        //     $("#rems-popup").html('');
 
-            })
+        //     var param = $(this).data('param');
+        //     var url = $(this).data('url');
+        //     //  console.log(param);
+        //     //  $(".page-loader").show();
+        //     $.ajax({
+        //         url: url,
+        //         type: "get",
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         },
+        //         contentType: "application/json; charset=utf-8",
+        //         dataType: "json",
+        //         data: {
+        //             'param': param
+        //         },
+        //         success: function(data) {
+        //               console.log(data);
+        //             //console.log(ko.toJSON(response));
+        //             if (!data.error) {
+        //                 $("#rems-popup").html(data['html']);
+        //                 $("#rems-popup").modal('show');
+        //             } else {
+        //                 console.log(data);
+        //             }
 
-        });
+        //             //  $(".page-loader").hide();
+        //         },
+        //         error: function(xhr, status, error) {
+        //             //console.log(xhr);
+        //             //$(".page-loader").hide();
+        //             //console.log(arguments);
+        //             /*  var msg =
+        //                   '<div id="inner-message" class="alert alert-error shadow"><button type="button" class="close" data-dismiss="alert">&times;</button>' +
+        //                   error + '</div>';
+        //               $("#message").html(msg);*/
+        //         }
+
+        //     })
+
+        // });
     </script>
     <script>
         $('.dropdown-toggle').dropdown();
@@ -317,6 +373,22 @@
     </script>
 
 
+</body>
+
+</html>
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+</head>
+
+<body>
+    <h1>Hello, world!</h1>
 </body>
 
 </html>

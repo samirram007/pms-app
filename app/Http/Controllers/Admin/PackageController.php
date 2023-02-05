@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Test; 
-use App\Models\TestPackage;
-use Illuminate\Http\Request;
-use GuzzleHttp\Psr7\Response;
 use App\Http\Controllers\Controller;
+use App\Models\Test;
+use App\Models\TestPackage;
+use GuzzleHttp\Psr7\Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class PackageController extends Controller
 {
-    protected static  $is_package;
+    protected static $is_package;
     public function __construct()
     {
-        self::$is_package=true;
+        self::$is_package = true;
     }
     /**
      * Display a listing of the resource.
@@ -25,19 +25,18 @@ class PackageController extends Controller
     public function index()
     {
         // $collections = Package::with(['test_package','test_package.test' ])->get();
-        $data['collections']  = Test::where('is_package',1)->get();
-                        foreach($data['collections'] as $key =>$item){
-                            if($item->is_package==1){
-                                $item->test_packages=TestPackage::with('test')->where('package_id',$item->id)->get();
-                    
-                            }   
-                                
-                           // $data['total_amount']+=$item->amount*$data['cart'][$item->id]['qty'];
-                        }
-       
-                       
-         //dd( $data['collections'] );
-        return view('admin.package.package_index',$data);
+        $data['collections'] = Test::where('is_package', 1)->get();
+        foreach ($data['collections'] as $key => $item) {
+            if ($item->is_package == 1) {
+                $item->test_packages = TestPackage::with('test')->where('package_id', $item->id)->get();
+
+            }
+
+            // $data['total_amount']+=$item->amount*$data['cart'][$item->id]['qty'];
+        }
+
+        //dd( $data['collections'] );
+        return view('admin.package.package_index', $data);
     }
 
     /**
@@ -47,8 +46,12 @@ class PackageController extends Controller
      */
     public function create()
     {
-        $data['collection']=Test::where('is_package',0)->get();
-        return view('admin.package.package_create',$data);
+        $data['collection'] = Test::where('is_package', 0)->get();
+        return response()->json([
+            'status' => '200',
+            'html' => view('admin.package.package_create', $data)->render(),
+        ]);
+
     }
 
     /**
@@ -59,10 +62,10 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'name' => 'required|unique:tests',
-            'amount' => 'required' 
+            'amount' => 'required',
         ]);
         // ($request->all());
         $package = new Test();
@@ -75,26 +78,26 @@ class PackageController extends Controller
         $package->description = $request->description;
         $package->start_date = $request->start_date;
         $package->end_date = $request->end_date;
-        $package->created_by=Auth::guard('admin')->user()->id;
-        $package->save(); 
+        $package->created_by = Auth::guard('admin')->user()->id;
+        $package->save();
 
-        $countTest= count($request->test_id);
-        if($countTest !=NULL){
-           
-            for($i=0;$i<$countTest;$i++){
-                
-                 $test_package= ($request->test_package_id[$i]) == '' ?  $exp=new TestPackage() : TestPackage::find($request->test_package_id[$i]);
-                
+        $countTest = count($request->test_id);
+        if ($countTest != null) {
+
+            for ($i = 0; $i < $countTest; $i++) {
+
+                $test_package = ($request->test_package_id[$i]) == '' ? $exp = new TestPackage() : TestPackage::find($request->test_package_id[$i]);
+
                 // $test_package->amount = $request->test_amount[$i];
-                 $test_package->test_id = $request->test_id[$i];
+                $test_package->test_id = $request->test_id[$i];
                 $test_package->package_id = $package->id;
-               
-                    $test_package->save();
-                    //dd($test_package);
+
+                $test_package->save();
+                //dd($test_package);
             }
         }
-       
-        return redirect()->route('admin.package.index')->with('success','Package created successfully');
+
+        return redirect()->route('admin.package.index')->with('success', 'Package created successfully');
     }
 
     /**
@@ -116,12 +119,12 @@ class PackageController extends Controller
      */
     public function edit($id)
     {
-        $data['collection']=Test::where('is_package',0)->get();
-        $data['editData']=Test::find($id);
-        $data['test_package']=TestPackage::with('test')
-                            ->where('package_id',$id)->get();
-        
-        return view('admin.package.package_edit',$data);
+        $data['collection'] = Test::where('is_package', 0)->get();
+        $data['editData'] = Test::find($id);
+        $data['test_package'] = TestPackage::with('test')
+            ->where('package_id', $id)->get();
+
+        return view('admin.package.package_edit', $data);
     }
 
     /**
@@ -134,8 +137,8 @@ class PackageController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|unique:tests,name,'.$id,
-            'amount' => 'required' 
+            'name' => 'required|unique:tests,name,' . $id,
+            'amount' => 'required',
         ]);
         $package = Test::find($id);
         $package->name = $request->name;
@@ -147,15 +150,15 @@ class PackageController extends Controller
         $package->description = $request->description;
         $package->start_date = $request->start_date;
         $package->end_date = $request->end_date;
-        $package->updated_by=Auth::guard('admin')->user()->id;
-        $package->save(); 
-        $countTest= count($request->test_id);
-        if($countTest !=NULL){
-           
-            for($i=0;$i<$countTest;$i++){
-                
-                 $test_package= ($request->test_package_id[$i]) == '' ?  $exp=new TestPackage() : TestPackage::find($request->test_package_id[$i]);
-                
+        $package->updated_by = Auth::guard('admin')->user()->id;
+        $package->save();
+        $countTest = count($request->test_id);
+        if ($countTest != null) {
+
+            for ($i = 0; $i < $countTest; $i++) {
+
+                $test_package = ($request->test_package_id[$i]) == '' ? $exp = new TestPackage() : TestPackage::find($request->test_package_id[$i]);
+
                 // $test_package->amount = $request->test_amount[$i];
                 $test_package->test_id = $request->test_id[$i];
                 $test_package->package_id = $package->id;
@@ -163,8 +166,8 @@ class PackageController extends Controller
                 //dd($test_package);
             }
         }
-       
-        return redirect()->route('admin.package.index')->with('success','Package updated successfully');
+
+        return redirect()->route('admin.package.index')->with('success', 'Package updated successfully');
     }
 
     /**
@@ -181,21 +184,21 @@ class PackageController extends Controller
     {
         $package = TestPackage::find($tpid);
         $package->delete();
-        return redirect()->back()->with('success','Test Package deleted successfully');
+        return redirect()->back()->with('success', 'Test Package deleted successfully');
         // return response()->json([
         //     'success'=>'Test Package deleted successfully'
-        // ]); 
+        // ]);
     }
 
     public function gettest(Request $request)
     {
-        $test_id=$request->test_id;
-        $data['test']=Test::find($test_id);
+        $test_id = $request->test_id;
+        $data['test'] = Test::find($test_id);
         //dd($data);
-        $GetView= view('admin.package.test_row',$data)->render();
+        $GetView = view('admin.package.test_row', $data)->render();
         return response()->json([
             "status" => true,
-            "html" => $GetView
+            "html" => $GetView,
         ]);
     }
 }

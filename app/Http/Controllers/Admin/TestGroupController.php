@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\TestGroup;
-use App\Models\Department;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Department;
+use App\Models\TestGroup;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class TestGroupController extends Controller
@@ -17,8 +17,8 @@ class TestGroupController extends Controller
      */
     public function index()
     {
-        $collections=TestGroup::all();
-        return  view('admin.test_group.test_group_index',compact('collections'));
+        $collections = TestGroup::all();
+        return view('admin.test_group.test_group_index', compact('collections'));
     }
 
     /**
@@ -28,9 +28,12 @@ class TestGroupController extends Controller
      */
     public function create()
     {
-         
-        $data['department']=Department::all();
-        return view('admin.test_group.test_group_create',$data);
+
+        $data['department'] = Department::all();
+        return response()->json([
+            'status' => '200',
+            'html' => view('admin.test_group.test_group_create', $data)->render(),
+        ]);
     }
 
     /**
@@ -41,16 +44,16 @@ class TestGroupController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(),[
-            'name'=>'required|unique:test_groups',
-            'department_id'=>'required',
+        Validator::make($request->all(), [
+            'name' => 'required|unique:test_groups',
+            'department_id' => 'required',
         ]);
 
-        $test_group=new TestGroup();
-        $test_group->name=$request->name; 
-        $test_group->department_id=$request->department_id;
+        $test_group = new TestGroup();
+        $test_group->name = $request->name;
+        $test_group->department_id = $request->department_id;
         $test_group->save();
-        return redirect()->route('admin.test_group.index')->with('success','Test Group Created Successfully');
+        return redirect()->route('admin.test_group.index')->with('success', 'Test Group Created Successfully');
     }
 
     /**
@@ -62,10 +65,9 @@ class TestGroupController extends Controller
     public function show($id)
     {
         // test_group_show
-        $data['showData']=TestGroup::find($id);
-        return view('admin.test_group.test_group_show',$data);
+        $data['showData'] = TestGroup::find($id);
+        return view('admin.test_group.test_group_show', $data);
 
-        
     }
 
     /**
@@ -76,9 +78,9 @@ class TestGroupController extends Controller
      */
     public function edit($id)
     {
-        $data['editData']=TestGroup::find($id);
-        $data['department']=Department::all();
-        return view('admin.test_group.test_group_edit',$data);
+        $data['editData'] = TestGroup::find($id);
+        $data['department'] = Department::all();
+        return view('admin.test_group.test_group_edit', $data);
     }
 
     /**
@@ -90,16 +92,16 @@ class TestGroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Validator::make($request->all(),[
-            'name'=>'required|unique:test_groups,name,'.$id,
-            'department_id'=>'required',
+        Validator::make($request->all(), [
+            'name' => 'required|unique:test_groups,name,' . $id,
+            'department_id' => 'required',
         ]);
 
-        $test_group=TestGroup::find($id);
-        $test_group->name=$request->name; 
-        $test_group->department_id=$request->department_id;
+        $test_group = TestGroup::find($id);
+        $test_group->name = $request->name;
+        $test_group->department_id = $request->department_id;
         $test_group->save();
-        return redirect()->route('admin.test_group.index')->with('success','Test Group Updated Successfully');
+        return redirect()->route('admin.test_group.index')->with('success', 'Test Group Updated Successfully');
     }
 
     /**
@@ -110,8 +112,8 @@ class TestGroupController extends Controller
      */
     public function destroy($id)
     {
-        $test_group=TestGroup::find($id);
+        $test_group = TestGroup::find($id);
         $test_group->delete();
-        return redirect()->route('admin.test_group.index')->with('success','Test Group Deleted Successfully');
+        return redirect()->route('admin.test_group.index')->with('success', 'Test Group Deleted Successfully');
     }
 }
