@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('code')->unique()->nullable();
+            $table->date('date_of_foundation')->nullable();
+            $table->string('license_no')->nullable();
+            $table->bigInteger('lab_centre_id')->nullable();
             $table->string('password')->default(bcrypt('password'));
             $table->string('address')->nullable();
             $table->string('contact_no')->nullable();

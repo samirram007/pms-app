@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('associates', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('email')->unique();
             $table->string('password')->default(bcrypt('password'));
             $table->string('address')->nullable();
@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->integer('contract_type_id')->default(2);
             $table->double('commission')->nullable();
+            $table->bigInteger('created_by')->nullable();
+            $table->bigInteger('lab_centre_id')->nullable();
+            $table->bigInteger('collection_centre_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
