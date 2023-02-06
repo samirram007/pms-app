@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\TestUnit;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class TestUnitController extends Controller
@@ -16,8 +16,8 @@ class TestUnitController extends Controller
      */
     public function index()
     {
-         $collections=TestUnit::all();
-        return  view('admin.test_unit.test_unit_index',compact('collections'));
+        $collections = TestUnit::all();
+        return view('admin.test_unit.test_unit_index', compact('collections'));
     }
 
     /**
@@ -27,8 +27,11 @@ class TestUnitController extends Controller
      */
     public function create()
     {
-        
-        return view('admin.test_unit.test_unit_create');
+        return response()->json([
+            'status' => '200',
+            'html' => view('admin.test_unit.test_unit_create')->render(),
+        ]);
+
     }
 
     /**
@@ -39,14 +42,14 @@ class TestUnitController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(),[
-            'name'=>'required|unique:test_units',
+        Validator::make($request->all(), [
+            'name' => 'required|unique:test_units',
         ]);
-        $test_unit=new TestUnit();
-        $test_unit->name=$request->name;
-        $test_unit->code=$request->code;
+        $test_unit = new TestUnit();
+        $test_unit->name = $request->name;
+        $test_unit->code = $request->code;
         $test_unit->save();
-        return redirect()->route('admin.test_unit.index')->with('success','Test Unit Created Successfully');
+        return redirect()->route('admin.test_unit.index')->with('success', 'Test Unit Created Successfully');
     }
 
     /**
@@ -59,7 +62,6 @@ class TestUnitController extends Controller
     {
         // test unit show
 
-
     }
 
     /**
@@ -70,8 +72,8 @@ class TestUnitController extends Controller
      */
     public function edit($id)
     {
-        $editData=TestUnit::find($id);
-        return view('admin.test_unit.test_unit_edit',compact('editData'));
+        $editData = TestUnit::find($id);
+        return view('admin.test_unit.test_unit_edit', compact('editData'));
     }
 
     /**
@@ -83,14 +85,14 @@ class TestUnitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Validator::make($request->all(),[
-            'name'=>'required|unique:test_units,name,'.$id,
+        Validator::make($request->all(), [
+            'name' => 'required|unique:test_units,name,' . $id,
         ]);
-        $test_unit=TestUnit::find($id);
-        $test_unit->name=$request->name;
-        $test_unit->code=$request->code;
+        $test_unit = TestUnit::find($id);
+        $test_unit->name = $request->name;
+        $test_unit->code = $request->code;
         $test_unit->save();
-        return redirect()->route('admin.test_unit.index')->with('success','Test Unit Updated Successfully');
+        return redirect()->route('admin.test_unit.index')->with('success', 'Test Unit Updated Successfully');
     }
 
     /**
@@ -101,8 +103,8 @@ class TestUnitController extends Controller
      */
     public function destroy($id)
     {
-        $test_unit=TestUnit::find($id);
+        $test_unit = TestUnit::find($id);
         $test_unit->delete();
-        return redirect()->route('admin.test_unit.index')->with('success','Test Unit Deleted Successfully');
+        return redirect()->route('admin.test_unit.index')->with('success', 'Test Unit Deleted Successfully');
     }
 }

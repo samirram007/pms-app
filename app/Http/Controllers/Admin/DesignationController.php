@@ -15,8 +15,8 @@ class DesignationController extends Controller
      */
     public function index()
     {
-        $collections=Designation::all();
-        return  view('admin.designation.designation_index',compact('collections')); 
+        $collections = Designation::all();
+        return view('admin.designation.designation_index', compact('collections'));
     }
 
     /**
@@ -26,7 +26,11 @@ class DesignationController extends Controller
      */
     public function create()
     {
-        return view('admin.designation.designation_create');
+
+        return response()->json([
+            'status' => '200',
+            'html' => view('admin.designation.designation_create')->render(),
+        ]);
     }
 
     /**
@@ -38,12 +42,12 @@ class DesignationController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:designations', 
+            'name' => 'required|unique:designations',
         ]);
-        $designation=new Designation();
-        $designation->name=$request->name; 
+        $designation = new Designation();
+        $designation->name = $request->name;
         $designation->save();
-        return redirect()->route('admin.designation.index')->with('success','Designation Created Successfully');
+        return redirect()->route('admin.designation.index')->with('success', 'Designation Created Successfully');
     }
 
     /**
@@ -54,8 +58,6 @@ class DesignationController extends Controller
      */
     public function show($id)
     {
-        
-        
 
     }
 
@@ -67,8 +69,8 @@ class DesignationController extends Controller
      */
     public function edit($id)
     {
-        $editData=Designation::find($id);
-        return view('admin.designation.designation_edit',compact('editData'));
+        $editData = Designation::find($id);
+        return view('admin.designation.designation_edit', compact('editData'));
     }
 
     /**
@@ -81,12 +83,12 @@ class DesignationController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|unique:designations,name,'.$id, 
+            'name' => 'required|unique:designations,name,' . $id,
         ]);
-        $designation=Designation::find($id);
-        $designation->name=$request->name; 
+        $designation = Designation::find($id);
+        $designation->name = $request->name;
         $designation->save();
-        return redirect()->route('admin.designation.index')->with('success','Designation Updated Successfully');
+        return redirect()->route('admin.designation.index')->with('success', 'Designation Updated Successfully');
     }
 
     /**
@@ -97,8 +99,8 @@ class DesignationController extends Controller
      */
     public function destroy($id)
     {
-        $designation=Designation::find($id);
+        $designation = Designation::find($id);
         $designation->delete();
-        return redirect()->route('admin.designation.index')->with('success','Designation Deleted Successfully');
+        return redirect()->route('admin.designation.index')->with('success', 'Designation Deleted Successfully');
     }
 }

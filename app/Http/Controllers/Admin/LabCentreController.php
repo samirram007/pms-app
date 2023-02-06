@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\LabCentre;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class LabCentreController extends Controller
 {
@@ -15,8 +15,8 @@ class LabCentreController extends Controller
      */
     public function index()
     {
-        $collections=LabCentre::all();
-        return view('admin.lab_centre.lab_centre_index',compact('collections'));
+        $collections = LabCentre::all();
+        return view('admin.lab_centre.lab_centre_index', compact('collections'));
     }
 
     /**
@@ -26,7 +26,11 @@ class LabCentreController extends Controller
      */
     public function create()
     {
-        return view('admin.lab_centre.lab_centre_create');
+        return response()->json([
+            'status' => '200',
+            'html' => view('admin.lab_centre.lab_centre_create')->render(),
+        ]);
+
     }
 
     /**
@@ -38,19 +42,19 @@ class LabCentreController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|unique:lab_centres',
+            'name' => 'required|unique:lab_centres',
         ]);
-        $collection=new LabCentre();
-        $collection->name=$request->name;
-        $collection->code=$request->code;
-        $collection->password=bcrypt('password');
-        $collection->date_of_foundation=$request->date_of_foundation;
-        $collection->license_no=$request->license_no;
-        $collection->address=$request->address;
-        $collection->contact_no=$request->contact_no;
-        $collection->email=$request->email; 
+        $collection = new LabCentre();
+        $collection->name = $request->name;
+        $collection->code = $request->code;
+        $collection->password = bcrypt('password');
+        $collection->date_of_foundation = $request->date_of_foundation;
+        $collection->license_no = $request->license_no;
+        $collection->address = $request->address;
+        $collection->contact_no = $request->contact_no;
+        $collection->email = $request->email;
         $collection->save();
-        return redirect()->route('admin.lab_centre.index')->with('success','Lab Centre Created Successfully');
+        return redirect()->route('admin.lab_centre.index')->with('success', 'Lab Centre Created Successfully');
     }
 
     /**
@@ -72,8 +76,8 @@ class LabCentreController extends Controller
      */
     public function edit($id)
     {
-        $editData=LabCentre::find($id);
-        return view('admin.lab_centre.lab_centre_edit',compact('editData'));
+        $editData = LabCentre::find($id);
+        return view('admin.lab_centre.lab_centre_edit', compact('editData'));
     }
 
     /**
@@ -86,18 +90,18 @@ class LabCentreController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required|unique:lab_centres,name,'.$id,
+            'name' => 'required|unique:lab_centres,name,' . $id,
         ]);
-        $collection=LabCentre::find($id);
-        $collection->name=$request->name;
-        $collection->code=$request->code;
-        $collection->date_of_foundation=$request->date_of_foundation;
-        $collection->license_no=$request->license_no;
-        $collection->address=$request->address;
-        $collection->contact_no=$request->contact_no;
-        $collection->email=$request->email;  
+        $collection = LabCentre::find($id);
+        $collection->name = $request->name;
+        $collection->code = $request->code;
+        $collection->date_of_foundation = $request->date_of_foundation;
+        $collection->license_no = $request->license_no;
+        $collection->address = $request->address;
+        $collection->contact_no = $request->contact_no;
+        $collection->email = $request->email;
         $collection->save();
-        return redirect()->route('admin.lab_centre.index')->with('success','Lab Centre Updated Successfully');
+        return redirect()->route('admin.lab_centre.index')->with('success', 'Lab Centre Updated Successfully');
     }
 
     /**
@@ -108,8 +112,8 @@ class LabCentreController extends Controller
      */
     public function destroy($id)
     {
-        $collection=LabCentre::find($id);
+        $collection = LabCentre::find($id);
         $collection->delete();
-        return redirect()->route('admin.lab_centre.index')->with('success','Lab Centre Deleted Successfully');
+        return redirect()->route('admin.lab_centre.index')->with('success', 'Lab Centre Deleted Successfully');
     }
 }

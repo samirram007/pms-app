@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\DiscountType;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class DiscountTypeController extends Controller
 {
     public static $discount_by = ['percentage', 'value'];
-    public static $discount_for = ['cart', 'test','test_group','test_category','associate','patient','department','package'];
+    public static $discount_for = ['cart', 'test', 'test_group', 'test_category', 'associate', 'patient', 'department', 'package'];
     public function __construct()
     {
-     //   $this->middleware('auth:admin');
-        
+        //   $this->middleware('auth:admin');
+
     }
-     
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -24,9 +23,9 @@ class DiscountTypeController extends Controller
      */
     public function index()
     {
-        $collections=DiscountType::all();
-         
-        return view('admin.discount_type.discount_type_index',compact('collections'));
+        $collections = DiscountType::all();
+
+        return view('admin.discount_type.discount_type_index', compact('collections'));
     }
 
     /**
@@ -36,11 +35,16 @@ class DiscountTypeController extends Controller
      */
     public function create()
     {
-        $data=[
-            'discount_by'=>self::$discount_by,
-            'discount_for'=>self::$discount_for,
+        $data = [
+            'discount_by' => self::$discount_by,
+            'discount_for' => self::$discount_for,
         ];
-        return view('admin.discount_type.discount_type_create',$data);
+
+        return response()->json([
+            'status' => '200',
+            'html' => view('admin.discount_type.discount_type_create', $data)->render(),
+        ]);
+
     }
 
     /**
@@ -52,17 +56,17 @@ class DiscountTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|unique:discount_types',
+            'name' => 'required|unique:discount_types',
         ]);
-        $collection=new DiscountType();
-        $collection->name=$request->name;     
-        $collection->description=$request->description;
-        $collection->discount_by=$request->discount_by;
-        $collection->discount=$request->discount;
-        $collection->discount_for=$request->discount_for;
+        $collection = new DiscountType();
+        $collection->name = $request->name;
+        $collection->description = $request->description;
+        $collection->discount_by = $request->discount_by;
+        $collection->discount = $request->discount;
+        $collection->discount_for = $request->discount_for;
 
         $collection->save();
-        return redirect()->route('admin.discount_type.index')->with('success','Discount Type Created Successfully');
+        return redirect()->route('admin.discount_type.index')->with('success', 'Discount Type Created Successfully');
     }
 
     /**
@@ -84,11 +88,11 @@ class DiscountTypeController extends Controller
      */
     public function edit($id)
     {
-        $data['editData']=DiscountType::find($id);
-        $data['discount_by']=self::$discount_by;
-        $data['discount_for']=self::$discount_for;
-        
-        return view('admin.discount_type.discount_type_edit',$data);
+        $data['editData'] = DiscountType::find($id);
+        $data['discount_by'] = self::$discount_by;
+        $data['discount_for'] = self::$discount_for;
+
+        return view('admin.discount_type.discount_type_edit', $data);
     }
 
     /**
@@ -101,17 +105,17 @@ class DiscountTypeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required|unique:discount_types,name,'.$id,
+            'name' => 'required|unique:discount_types,name,' . $id,
         ]);
-        $collection=DiscountType::find($id);
-        $collection->name=$request->name;     
-        $collection->description=$request->description;
-        $collection->discount_by=$request->discount_by;
-        $collection->discount=$request->discount;
-        $collection->discount_for=$request->discount_for;
+        $collection = DiscountType::find($id);
+        $collection->name = $request->name;
+        $collection->description = $request->description;
+        $collection->discount_by = $request->discount_by;
+        $collection->discount = $request->discount;
+        $collection->discount_for = $request->discount_for;
 
         $collection->save();
-        return redirect()->route('admin.discount_type.index')->with('success','Discount Type Updated Successfully');
+        return redirect()->route('admin.discount_type.index')->with('success', 'Discount Type Updated Successfully');
     }
 
     /**
@@ -122,8 +126,8 @@ class DiscountTypeController extends Controller
      */
     public function destroy($id)
     {
-        $collection=DiscountType::find($id);
+        $collection = DiscountType::find($id);
         $collection->delete();
-        return redirect()->route('admin.discount_type.index')->with('success','Discount Type Deleted Successfully');
+        return redirect()->route('admin.discount_type.index')->with('success', 'Discount Type Deleted Successfully');
     }
 }
