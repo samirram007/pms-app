@@ -127,6 +127,7 @@ Route::get('test_group/delete/{tpid}',[TestGroupController::class,'destroy'])->n
 //========================== TestReport ====================================================================================
 //==========================================================================================================================
 Route::get('test_report/config/{id}',[TestReportController::class,'config'])->name('test_report.config');
+Route::get('test_report/config_examination/{id}',[TestReportController::class,'config_examination'])->name('test_report.config_examination');
 
     //==========================================================================================================================
 //========================== TestUnit ====================================================================================
