@@ -55,10 +55,11 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:tests',
-            // 'test_category_id' => 'required',
-            // 'test_group_id' => 'required',
+            'test_category_id' => 'required',
+            'test_group_id' => 'required',
             'amount' => 'required',
         ]);
 
