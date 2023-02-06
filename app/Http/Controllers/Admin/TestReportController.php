@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Test;
-use App\Models\LabCentre;
-use Illuminate\Http\Request;
-use App\Models\TestReportConfig;
-use App\Models\TestExaminationReportConfig;
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
+use App\Models\LabCentre;
+use App\Models\Test;
+use App\Models\TestExaminationReportConfig;
+use App\Models\TestReportConfig;
 
 class TestReportController extends Controller
 {
-    protected $section=[
-        'header'=>'header',
-        'footer'=>'footer',
-        'body'=>'body',
+    protected $section = [
+        'header' => 'header',
+        'footer' => 'footer',
+        'body' => 'body',
     ];
-    protected $cols=[1,2,3,4,5,6,7,8,9,10,11,12];
-    protected $no_of_pages=[1,2,3,4,5];
-    protected $pages=[
-        'A4'=>[210,297],
-        'A3'=>[297,420],
-        'A2'=>[420,594],
-        'A1'=>[594,841],
-        'A0'=>[841,1189],
+    protected $cols = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    protected $no_of_pages = [1, 2, 3, 4, 5];
+    protected $pages = [
+        'A4' => [210, 297],
+        'A3' => [297, 420],
+        'A2' => [420, 594],
+        'A1' => [594, 841],
+        'A0' => [841, 1189],
     ];
-    protected $fonts=[
+    protected $fonts = [
         'Arial',
         'Times New Roman',
         'Courier New',
@@ -48,26 +48,26 @@ class TestReportController extends Controller
         'Wingdings 2',
         'Wingdings 3',
     ];
-    protected $fontSizes=[
-        8,9,10,11,12,14,16,18,20,22,24,26,28,36,48,72,
+    protected $fontSizes = [
+        8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72,
     ];
-    protected $fontStyles=[
+    protected $fontStyles = [
         'normal',
         'bold',
         'italic',
         'underline',
     ];
-    protected $aligns=[
+    protected $aligns = [
         'left',
         'center',
         'right',
     ];
-    protected $valigns=[
+    protected $valigns = [
         'top',
         'middle',
         'bottom',
     ];
-    protected $borderStyles=[
+    protected $borderStyles = [
         'solid',
         'dashed',
         'dotted',
@@ -78,10 +78,10 @@ class TestReportController extends Controller
         'outset',
         'none',
     ];
-    protected $borderWidths=[
-        0,1,2,3,4,5,6,7,8,9,10,
+    protected $borderWidths = [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
     ];
-    protected $borderColors=[
+    protected $borderColors = [
         'black',
         'red',
         'green',
@@ -91,7 +91,7 @@ class TestReportController extends Controller
         'cyan',
         'white',
     ];
-    protected $backgroundColors=[
+    protected $backgroundColors = [
         'black',
         'red',
         'green',
@@ -101,7 +101,7 @@ class TestReportController extends Controller
         'cyan',
         'white',
     ];
-    protected $textColors=[
+    protected $textColors = [
         'black',
         'red',
         'green',
@@ -114,24 +114,24 @@ class TestReportController extends Controller
 
     protected $components = [
 
-        'content'=>'content',
+        'content' => 'content',
 
-        'section'=>'section',
-        'table'=>'table',
-        'div'=>'div',
-        'span'=>'span',
-        'p'=>'p',
-        'input'=>'input',
-        'test'=>'test',
-        'label'=>'label',
+        'section' => 'section',
+        'table' => 'table',
+        'div' => 'div',
+        'span' => 'span',
+        'p' => 'p',
+        'input' => 'input',
+        'test' => 'test',
+        'label' => 'label',
         'textarea' => 'textarea',
         'select' => 'select',
     ];
 
     public function config($id)
     {
-        $user=auth()->user();
-        $data['lab_center'] = LabCentre::where('id',$user->lab_centre_id)->first();
+        $user = auth()->user();
+        $data['lab_center'] = LabCentre::where('id', $user->lab_centre_id)->first();
         $data['test'] = Test::find($id);
         // dd($data['test']);
         $data['tests'] = Test::where('is_package', 0)->get();
@@ -141,9 +141,10 @@ class TestReportController extends Controller
     }
     public function config_examination($id)
     {
-        $user=auth()->user();
-        $data['lab_center'] = LabCentre::where('id',$user->lab_centre_id)->first();
+        $user = auth()->user();
+        $data['lab_center'] = LabCentre::where('id', $user->lab_centre_id)->first();
         $data['test'] = Test::find($id);
+        $data['doctors'] = Doctor::all();
         // dd($data['test']);
         //$data['tests'] = Test::where('is_package', 0)->get();
         $data['test_examination_report_configs'] = TestExaminationReportConfig::where('test_id', $id)->get();

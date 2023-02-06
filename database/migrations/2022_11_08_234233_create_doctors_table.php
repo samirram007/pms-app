@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('visiting_charge')->nullable();
             $table->string('availablility')->nullable()->comment('1=Available, 0=Not Available all other values are  allowed');
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('contract_type_id')->default(2);
+            $table->integer('contract_type_id')->default('2')->nullable();
             $table->decimal('salary')->nullable();
             $table->string('slug')->nullable();
             $table->string('image')->nullable();

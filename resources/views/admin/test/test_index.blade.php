@@ -55,10 +55,5 @@
             });
         });
 </script>
-@endsection
-=======
-</section>
-</div>
 
 @endsection
->>>>>>> f4438d49f9525403c80deaff40b3af7931047663
