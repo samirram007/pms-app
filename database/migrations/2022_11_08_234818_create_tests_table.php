@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\TestGroup;
 use App\Models\TestCategory;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\TestGroup;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -44,7 +44,7 @@ return new class extends Migration
             $table->integer('test_duration')->default(0); // in days
             $table->text('preparation')->nullable();
             $table->text('instructions')->nullable();
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive'])->default('active')->nullable();
             $table->integer('reporting_template_id')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

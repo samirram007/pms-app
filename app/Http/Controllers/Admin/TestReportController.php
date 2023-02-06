@@ -8,6 +8,7 @@ use App\Models\LabCentre;
 use App\Models\Test;
 use App\Models\TestExaminationReportConfig;
 use App\Models\TestReportConfig;
+use Illuminate\Http\Request;
 
 class TestReportController extends Controller
 {
@@ -141,14 +142,35 @@ class TestReportController extends Controller
     }
     public function config_examination($id)
     {
+        // dd($id);
         $user = auth()->user();
         $data['lab_center'] = LabCentre::where('id', $user->lab_centre_id)->first();
         $data['test'] = Test::find($id);
         $data['doctors'] = Doctor::all();
-        // dd($data['test']);
+        $data['collections'] = TestExaminationReportConfig::with('doctor','test')->get();
+       //  dd($data['collections']);
         //$data['tests'] = Test::where('is_package', 0)->get();
         $data['test_examination_report_configs'] = TestExaminationReportConfig::where('test_id', $id)->get();
         //$data['components'] = $this->components;
         return view('admin.test_report.config_examination', $data);
     }
+
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        $test_report = new TestExaminationReportConfig();
+        $test_report->test_id = $request->test_id;
+        $test_report->doctor_id = $request->doctor_id;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('uploads/test_report_examination/', $filename);
+            $test_report->file = $filename;
+        }
+        $test_report->save();
+
+        return redirect()->back();
+    }
+
 }

@@ -125,6 +125,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 //==========================================================================================================================
     Route::get('test_report/config/{id}', [TestReportController::class, 'config'])->name('test_report.config');
     Route::get('test_report/config_examination/{id}', [TestReportController::class, 'config_examination'])->name('test_report.config_examination');
+    Route::post('test_report/store_examination', [TestReportController::class, 'store'])->name('test_report.store_examination');
 
     //==========================================================================================================================
 //========================== TestUnit ====================================================================================

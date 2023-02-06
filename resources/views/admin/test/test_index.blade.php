@@ -14,8 +14,9 @@
                     </ol>
                 </div><!-- /.col -->
                 <div class="col-2 d-flex justify-content-end align-items-start">
-                    <a href="{{ route('admin.test.create') }}" style="width:8rem;"
-                        class=" position-absolute load-popup  btn btn-rounded btn-primary "> ADD TEST</a>
+                    <a href="javascript:void(0)" data-url="{{ route('admin.test.create') }}" data-param=""
+                        style="width:8rem;" class=" position-absolute load-popup  btn btn-rounded btn-primary "> ADD
+                        TEST</a>
 
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -36,7 +37,7 @@
 
                 </div>
             </div>
-            <<<<<<< HEAD </div>
+        </div>
     </section>
 </div>
 <script>
