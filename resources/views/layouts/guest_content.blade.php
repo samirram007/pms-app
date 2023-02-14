@@ -2,12 +2,12 @@
     <div class="steady1  bg-cover d-flex align-items-center">
         <div class="container">
             <div class="row">
-                <div class="col-6 col-sm-6 col-md-6">
+                <div class=" col-md-6">
                     <h1 class="fw-bold fs-3 my-3 text-black">"One rarely falls in love without being as much attracted
                         to what is interestingly wrong with someone as what is objectively healthy."</h1>
 
                 </div>
-                <div class="col-md-4 col-6">
+                <div class="col-md-6 ">
                     <div class="rounded ">
                         <div class="card login_form">
                             <div class="card-body">

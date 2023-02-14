@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Test;
+use App\Models\Doctor;
 use App\Models\LabCentre;
 use Illuminate\Http\Request;
 use App\Models\TestReportConfig;
-use App\Models\TestExaminationReportConfig;
 use App\Http\Controllers\Controller;
+use App\Models\TestExaminationReportConfig;
 
 class TestReportController extends Controller
 {
@@ -144,8 +145,9 @@ class TestReportController extends Controller
         $user=auth()->user();
         $data['lab_center'] = LabCentre::where('id',$user->lab_centre_id)->first();
         $data['test'] = Test::find($id);
+        $data['doctors']=Doctor::all();
         // dd($data['test']);
-        //$data['tests'] = Test::where('is_package', 0)->get();
+        //  $data['tests'] = Test::with('test_group')->where('is_package', 0)->where('test_group_id', [2,3])->get();
         $data['test_examination_report_configs'] = TestExaminationReportConfig::where('test_id', $id)->get();
         //$data['components'] = $this->components;
         return view('admin.test_report.config_examination', $data);

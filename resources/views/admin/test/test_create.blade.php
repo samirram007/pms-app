@@ -6,17 +6,18 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h4 class="text-dark py-2">Create Test </h4>
-
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right border-0">
+                        <div class="text-dark py-2 fs-5">Create Test </div>
+                        <ol class="breadcrumb   border-0 small">
                             <li class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"
                                     class="text-active">Dashboard</a></li>
                             <li class="breadcrumb-item "><a href="{{ route('admin.test.index') }}" class="text-active">Test
                                     List</a></li>
                             <li class="breadcrumb-item active">  Add Test</li>
                         </ol>
+
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -31,66 +32,60 @@
                             <form action="{{ route('admin.test.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
-                                    <div class="row   border-bottom pb-2 mb-2">
 
-                                        <div class="col-sm-12 text-right">
-                                            <button type="submit" class="btn btn-outline-info"><span class="iconify" data-icon="mdi:content-save-all-outline" data-width="15" data-height="15"></span> Save</button>
-
-                                        </div>
-                                    </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="name">Test Name</label>
                                                 <input type="text" class="form-control" id="name" name="name"
                                                     placeholder="Enter Test Name">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="name">Test Alias</label>
                                                 <input type="text" class="form-control" id="alias" name="alias"
                                                     placeholder="Enter Test Alias">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="name">Test Code</label>
                                                 <input type="text" class="form-control" id="code" name="code"
                                                     placeholder="Enter Test Code">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="name">Test Description</label>
-                                                <textarea class="form-control" id="description" name="description" placeholder="Enter Test Description"></textarea>
+                                                <textarea class="form-control" rows=1 id="description" name="description" placeholder="Enter Test Description"></textarea>
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="cost">Test Cost</label>
                                                 <input type="text" class="form-control" id="cost" name="cost"
                                                     placeholder="Enter Test Cost">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="amount">Rate</label>
                                                 <input type="text" class="form-control" id="amount" name="amount"
                                                     placeholder="Enter Test Rate">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="discount">Discount(if any)</label>
                                                 <input type="text" class="form-control" id="discount" name="discount"
                                                     placeholder="Enter Test Discount">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="test_duration">Test Duration</label>
                                                 <input type="text" class="form-control" id="test_duration" name="test_duration"
@@ -100,7 +95,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group  ">
 
                                                 <label for="test_group_id">Test Group</label>
@@ -127,7 +122,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group ">
 
                                                 <label for="test_category_id">Test Category</label>
@@ -163,7 +158,7 @@
                                     <div class="row" id="Attributes" style="display: none;" data-aos="fade-in">
                                         <input type="hidden" id="has_method" name="has_method" value="true">
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group ">
 
                                                 <label for="inhouse_test">Inhouse Test ?</label>
@@ -176,14 +171,14 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
 
                                                 <label for="Unit">Unit</label>
 
 
                                                 <select class="form-control " name="test_unit_id" id="test_unit_id">
-                                                    <option value="" class="text-bold">SELECT GROUP</option>
+                                                    <option value="" class="text-bold">SELECT UNIT</option>
                                                     @forelse ($test_units as $tu)
                                                         <option value="{{ $tu['id'] }}">
                                                             {!! $tu['code'] !!}
@@ -199,21 +194,21 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group  ">
                                                 <label for="Specimen">Specimen</label>
                                                 <input type="text" class="form-control" name="specimen"
                                                     id="Specimen" placeholder="Specimen" value="">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group ">
                                                 <label for="TestMethod">Test Method</label>
                                                 <input type="text" class="form-control" name="test_method"
                                                     id="test_method" placeholder="TestMethod" value="">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="test_method_description">Method Description</label>
                                                 <input type="text" class="form-control" name="test_method_description"
@@ -221,7 +216,7 @@
                                                     value="">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group ">
                                                 <label for="reference_ange">Reference Range</label>
                                                 <input type="text" class="form-control" name="reference_ange"
@@ -232,7 +227,13 @@
 
 
                                     </div>
+                                    <div class="row    pb-2 mb-2">
 
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-info"> Save</button>
+
+                                        </div>
+                                    </div>
 
                             </form>
 
