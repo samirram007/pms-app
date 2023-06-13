@@ -1,0 +1,183 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* body,html{
+    height: 100%;
+} */
+.body-bg{
+    background-image: url("/images/emp-bg.jpg");
+    background-repeat: no-repeat;  
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+}
+.emp-logo{
+    height: 64px;
+    width: 72px;    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin: auto;
+
+}
+.whole {
+  
+    width: 100%;
+    height: inherit;
+    /* height: 100vh; */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card{
+    border:none ;
+    display: none;
+}
+.card-body {
+    position: absolute;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.162);
+    height: 530px;
+    border-radius: 10px;
+    background-color: #c8f5ffa0;
+    transition: 1s;
+    box-shadow: 1px 1px 50px 20px rgba(0, 30, 101, 0.784);
+
+}
+.box1:hover {
+    box-shadow: 1px 1px 15px 10px rgba(0, 255, 255, 0.748);
+
+}
+.emp-email {
+    font-size: 20px;
+}
+.fa-google {
+    background: 
+      linear-gradient(to bottom left,transparent 49%,#fbbc05 50%) 0 25%/48% 40%,
+      linear-gradient(to top    left,transparent 49%,#fbbc05 50%) 0 75%/48% 40%,
+    
+      linear-gradient(-40deg ,transparent 53%,#ea4335 54%),
+      linear-gradient( 45deg ,transparent 46%,#4285f4 48%),
+      #34a853;
+    background-repeat:no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  .fa-instagram {
+    color: transparent;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }  
+
+  .input{
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 2px solid #8585e9;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+/* .form-control::-webkit-input-placeholder {
+    color: rgba(0, 19, 104, 0.916);
+    padding-left: 5px;
+    font-size: 15px;
+}
+::placeholder{
+    color: blue;
+} */
+.emp-login-head {
+    font-size: 35px;
+    margin: 0px auto;
+    margin-bottom: 40px;
+    color: #090070;
+    text-shadow: 0px 1px 2px #15fff7;
+    justify-content: center;
+    display: flex;
+
+}
+
+
+/* .btn {
+    height: 50px;
+    width: 360px;
+    background: rgb(63,224,251);
+    background: radial-gradient(circle, rgba(63,224,251,1) 0%, rgba(66,209,251,1) 39%, rgba(70,94,252,1) 90%);    margin: auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 2px solid #000863;
+    color: #ffffff;
+    border-radius: 4px;
+    text-shadow: 0px 2px 3px blue;
+    box-shadow: inset  1px 1px 6px 1px blue;
+    font-size: 16px;
+    font-weight: 900;
+    transition: 0.5s;
+
+} */
+
+/* .btn:hover {
+
+
+    background: rgb(63,224,251);
+    background: radial-gradient(circle, rgba(63,224,251,1) 0%, rgb(51, 175, 213) 39%, rgb(24, 46, 193) 90%);    
+    margin: auto;
+
+} */
+.cs{
+    margin-bottom: 70px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .body-bg{
+        height: 100vh;
+        position: relative;
+    }
+    .whole {
+        width: 100%;
+        height: inherit;
+        /* height: 100vh; */
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .box {
+        position: absolute;
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.566);
+        height: 460px;
+        border-radius: 10px;
+        background-color: #c4beffa6;
+        transition: 1s;
+        padding: 10px;
+        box-shadow: 1px 1px 40px 7px rgba(0, 76, 255, 0.703);
+    }
+    .form-group{
+        width:100%;
+
+    }
+    .form-control{
+        width: 100%;
+    }
+    .btn{
+        width: 100%;
+    }
+    
+}

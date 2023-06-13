@@ -9,8 +9,8 @@ export default defineConfig({
         host,
         hmr: { host },
         https: {
-            key: fs.readFileSync(`D:/laragon/etc/ssl/laragon.key`),
-            cert: fs.readFileSync(`D:/laragon/etc/ssl/laragon.crt`),
+            key: fs.readFileSync(`c:/laragon/etc/ssl/laragon.key`),
+            cert: fs.readFileSync(`c:/laragon/etc/ssl/laragon.crt`),
         },
     },
     plugins: [
